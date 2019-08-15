@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Container, Header, Left, Body, Right, Title } from 'native-base';
 
-import GreenHeader from '../components/greenHeader'
+import WhiteHeader from '../components/whiteHeader'
 
 export default class Chat extends Component {
     render() {
         return (
             <Container>
-                <GreenHeader 
+                <WhiteHeader 
                     title={<Title>Chat</Title>} 
                 />
             </Container>

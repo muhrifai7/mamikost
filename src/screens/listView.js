@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { StyleSheet } from 'react-native'
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { Container, 
         Content, 
@@ -10,7 +11,9 @@ import { Container,
         Button, 
         Thumbnail, 
         Title, 
-        Text } from 'native-base'
+        Text,
+        Item, 
+        Input } from 'native-base'
 import { SearchBar } from 'react-native-elements'
 
 export default class Listview extends Component {
@@ -20,8 +23,7 @@ export default class Listview extends Component {
                 <Header searchBar rounded>
                     <Item>
                         <Icon name="ios-search" />
-                        <Input placeholder="Search" />
-                        <Icon name="ios-people" />
+                        <Input placeholder="Cari tempat.." />
                     </Item>
                     <Button transparent>
                         <Text>Search</Text>

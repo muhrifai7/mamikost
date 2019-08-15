@@ -18,7 +18,7 @@ import { createAppContainer, createStackNavigator } from 'react-navigation'
 import WhiteHeader from '../components/whiteHeader'
 import ListView from '../screens/listView'
 
-export default class Explore extends Component {
+class Explore extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -44,6 +44,7 @@ export default class Explore extends Component {
                 <Grid>
                     <Row size={4} style={{ backgroundColor: 'white', borderColor: 'green' }}>
                         <Col >
+                        
                             <Button iconLeft transparent>
                                 <Icon name='bed' style={styles.greenColor} />
                                 <Text style={styles.greenColor}>Kostan</Text>
@@ -97,6 +98,7 @@ export default class Explore extends Component {
 
 const ExploreNavigator = createStackNavigator(
     {
+        Explore: Explore,
         ListView: ListView,
     },
     {
@@ -105,7 +107,7 @@ const ExploreNavigator = createStackNavigator(
     }
 )
 
-createAppContainer(ExploreNavigator)
+export default createAppContainer(ExploreNavigator)
 
 const styles = StyleSheet.create({
     inputContainerStyleSearchbar: {
@@ -149,6 +151,7 @@ const styles = StyleSheet.create({
     },
     haiStyle: { 
         fontSize: 23, 
+        marginLeft: 20,
         color: 'green'
     },
     textAndSearchbar: {

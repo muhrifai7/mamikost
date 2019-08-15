@@ -15,7 +15,7 @@ export default class Explore extends Component {
                     title={<Title>Mamiclone</Title>}
                 />
                 <Tabs>
-                    <Tab heading={ <TabHeading style={{ backgroundColor: 'green'}}><Icon name="navigate" /><Text>Camera</Text></TabHeading>}>
+                    <Tab heading={ <TabHeading style={{ backgroundColor: 'green'}}><Icon name="" /><Text>Camera</Text></TabHeading>}>
                     </Tab>
                     <Tab heading={ <TabHeading style={{ backgroundColor: 'green'}}><Icon name="person"/><Text>Test</Text></TabHeading>}>
                     </Tab>

@@ -20,9 +20,16 @@ export default class Listview extends Component {
     render() {
         return (
             <Container>
-                <Header searchBar rounded>
-                    <Item>
-                        <Icon name="ios-search" />
+                <Header searchBar rounded style={styles.header}>
+                    <Left style={styles.left}>
+                        <Button style={styles.backButton} onPress={() => {this.props.navigation.navigate('Explore')}}>
+                            <Text>
+                                <Icon name="arrow-back" style={styles.backArrow} />
+                            </Text>
+                        </Button>
+                    </Left>
+                    <Item style={styles.item}>
+                        <Icon name="ios-search" style={styles.icon}/>
                         <Input placeholder="Cari tempat.." />
                     </Item>
                     <Button transparent>
@@ -33,3 +40,12 @@ export default class Listview extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    header: { backgroundColor:'white'},
+    left: { paddingLeft: 6, flex: 0, width: 62},
+    backButton: {backgroundColor: 'white', elevation: 0},
+    backArrow: {backgroundColor: 'white', color: 'green'},
+    item: { elevation: 5},
+    icon: {color: 'green'}
+})

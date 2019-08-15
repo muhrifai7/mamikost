@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, KeyboardAvoidingView } from 'react-native'
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { Container, 
         Content, 
@@ -11,7 +11,8 @@ import { Container,
         Button, 
         Thumbnail, 
         Title, 
-        Text } from 'native-base'
+        Text, 
+        View} from 'native-base'
 import { SearchBar } from 'react-native-elements'
 import { createAppContainer, createStackNavigator } from 'react-navigation'
 
@@ -34,7 +35,7 @@ class Explore extends Component {
 
     render() {
         return (
-            <Container >
+        <Container>
                 <WhiteHeader 
                     button={<Button transparent>
                                 <Icon name='home' style={{ color: 'green'}}/>
@@ -42,10 +43,9 @@ class Explore extends Component {
                     title={<Title style={styles.greenColor}>Mamaclone</Title>}
                 />
                 <Grid>
-                    <Row size={4} style={{ backgroundColor: 'white', borderColor: 'green' }}>
+                    <Row size={1} style={{backgroundColor: 'white', borderColor: 'green' }}>
                         <Col >
-                        
-                            <Button iconLeft transparent>
+                            <Button iconLeft transparent active>
                                 <Icon name='bed' style={styles.greenColor} />
                                 <Text style={styles.greenColor}>Kostan</Text>
                             </Button>
@@ -69,12 +69,12 @@ class Explore extends Component {
                             </Button>
                         </Col>
                     </Row>
-                    <Row size={15} style={{ borderColor: 'green', backgroundColor: 'white'}}>
-                        <Content style={styles.textAndSearchbar}>
-                            <Row>
+                    <Row size={10} style={{ borderColor: 'green', backgroundColor: 'white', marginTop: 2}}>
+                        <View style={styles.textAndSearchbar}>
+                            <Row size={1}>
                                 <Text style={styles.haiStyle}>Hai, mau cari kost di mana?</Text>
                             </Row>
-                            <Row>
+                            <Row size={4}>
                                 <SearchBar
                                     inputContainerStyle={styles.inputContainerStyleSearchbar}
                                     containerStyle= {styles.containerStyleSearchbar }
@@ -85,10 +85,7 @@ class Explore extends Component {
                                     onChange={() => {this.props.navigation.navigate('ListView')}}
                                 />
                             </Row>  
-                        </Content>
-                    </Row>
-                    <Row size={55} style={{ backgroundColor: 'blue'}}>
-                        
+                        </View>
                     </Row>
                 </Grid>
             </Container>
@@ -114,8 +111,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white', 
         borderWidth:1, 
         borderColor: 'white',
-        marginTop: 0,
-        borderRadius: 50
+        borderRadius: 50,
+        height: 5
     },
     containerStyleSearchbar: {
         backgroundColor: 'white',
@@ -124,7 +121,8 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         width: 350,
         borderRadius: 50,
-        marginTop: 12
+        marginTop: 12,
+        height: 44,
     },
     whiteColor: {
         color: 'white'
@@ -157,5 +155,8 @@ const styles = StyleSheet.create({
     textAndSearchbar: {
         alignSelf: 'center',
         marginHorizontal: 35,
+        marginBottom: 400,
+        paddingBottom: 10,
+        backgroundColor: 'transparent'
     }
 })

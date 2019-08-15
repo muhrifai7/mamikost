@@ -6,16 +6,12 @@ export default class Explore extends Component {
     render() {
         return (
             <Container>
-                <Header style={{ flexDirection: 'row', backgroundColor: 'green'}}>
-                    <Left>
-                        <Button transparent>
-                            <Icon name='home' />
-                        </Button>
-                    </Left>
-                    <Body style={{ paddingLeft: 2}}>
-                        <Title>Mamiclone</Title>
-                    </Body>
-                </Header>
+                <GreenHeader 
+                    button={<Button transparent>
+                                <Icon name='home'/>
+                            </Button>} 
+                    title={<Title>Mamiclone</Title>}
+                />
             </Container>
         );
     }

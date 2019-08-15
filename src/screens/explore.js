@@ -1,12 +1,37 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
 import { Col, Row, Grid } from "react-native-easy-grid";
-import { Container, Content, Icon,  Header, Left, Body, Right, Button, Thumbnail, Title, Text } from 'native-base';
+import { Container, 
+        Content, 
+        Icon,  
+        Header, 
+        Left, 
+        Body, 
+        Right, 
+        Button, 
+        Thumbnail, 
+        Title, 
+        Text } from 'native-base'
+import { SearchBar } from 'react-native-elements'
+import { createAppContainer, createStackNavigator } from 'react-navigation'
 
-import WhiteHeader from '../components/whiteHeader';
-import { BorderlessButton } from 'react-native-gesture-handler';
+import WhiteHeader from '../components/whiteHeader'
+import ListView from '../screens/listView'
 
 export default class Explore extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            search: ""
+        }
+    }
+
+    updateSearch = (search) => {
+        this.setState({
+            search: search
+        })
+    }
+
     render() {
         return (
             <Container >
@@ -44,12 +69,20 @@ export default class Explore extends Component {
                         </Col>
                     </Row>
                     <Row size={15} style={{ borderColor: 'green', backgroundColor: 'white'}}>
-                        <Content>
+                        <Content style={styles.textAndSearchbar}>
                             <Row>
-                                <Text style={{ fontSize: 28, color: 'silver'}}>Hai</Text>
+                                <Text style={styles.haiStyle}>Hai, mau cari kost di mana?</Text>
                             </Row>
                             <Row>
-                                <Text>Ini searchbar</Text>
+                                <SearchBar
+                                    inputContainerStyle={styles.inputContainerStyleSearchbar}
+                                    containerStyle= {styles.containerStyleSearchbar }
+                                    placeholderTextColor={'#g5g5g5'}
+                                    placeholder="Cari tempat.."
+                                    onChangeText={this.updateSearch}
+                                    value={this.state.search}
+                                    onKeyPress={() => this.props.navigation.navigate('ListView')}
+                                />
                             </Row>  
                         </Content>
                     </Row>
@@ -62,7 +95,34 @@ export default class Explore extends Component {
     }
 }
 
+const ExploreNavigator = createStackNavigator(
+    {
+        ListView: ListView,
+    },
+    {
+        headerMode: 'none'
+    }
+)
+
+createAppContainer(ExploreNavigator)
+
 const styles = StyleSheet.create({
+    inputContainerStyleSearchbar: {
+        backgroundColor: 'white', 
+        borderWidth:1, 
+        borderColor: 'white',
+        marginTop: 0,
+        borderRadius: 50
+    },
+    containerStyleSearchbar: {
+        backgroundColor: 'white',
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 5,
+        width: 350,
+        borderRadius: 50,
+        marginTop: 12
+    },
     whiteColor: {
         color: 'white'
     },
@@ -85,5 +145,13 @@ const styles = StyleSheet.create({
     },
     silverColor: {
         color: 'gray'
+    },
+    haiStyle: { 
+        fontSize: 23, 
+        color: 'green'
+    },
+    textAndSearchbar: {
+        alignSelf: 'center',
+        marginHorizontal: 35,
     }
 })

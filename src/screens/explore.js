@@ -81,7 +81,7 @@ export default class Explore extends Component {
                                     placeholder="Cari tempat.."
                                     onChangeText={this.updateSearch}
                                     value={this.state.search}
-                                    onKeyPress={() => this.props.navigation.navigate('ListView')}
+                                    onChange={() => {this.props.navigation.navigate('ListView')}}
                                 />
                             </Row>  
                         </Content>
@@ -100,6 +100,7 @@ const ExploreNavigator = createStackNavigator(
         ListView: ListView,
     },
     {
+        initialRouteName: 'Explore',
         headerMode: 'none'
     }
 )

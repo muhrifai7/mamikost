@@ -6,7 +6,12 @@ export default class GreenHeader extends Component {
     render() {
         return (
             <Header style={styles.header}>
-            
+                <Left>
+                    {this.props.button}
+                </Left>
+                <Body>
+                    {this.props.title}
+                </Body>
             </Header>
         );
     }

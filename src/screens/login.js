@@ -5,13 +5,9 @@ export default class Login extends Component {
     render() {
         return (
             <Container>
-                <Header>
-                    <Left/>
-                        <Body>
-                            <Title>Login</Title>
-                        </Body>
-                    <Right />
-                </Header>
+                <GreenHeader 
+                    title={<Title>Login</Title>} 
+                />
             </Container>
         );
     }

@@ -5,13 +5,9 @@ export default class Wishlist extends Component {
     render() {
         return (
         <Container>
-            <Header>
-                <Left/>
-                    <Body>
-                        <Title>Wishlist</Title>
-                    </Body>
-                <Right />
-            </Header>
+            <GreenHeader 
+                    title={<Title>Wishlist</Title>} 
+                />
         </Container>
         );
     }

@@ -7,13 +7,9 @@ export default class Chat extends Component {
     render() {
         return (
             <Container>
-                <Header>
-                    <Left/>
-                        <Body>
-                            <Title>Chat</Title>
-                        </Body>
-                    <Right />
-                </Header>
+                <GreenHeader 
+                    title={<Title>Chat</Title>} 
+                />
             </Container>
         );
     }

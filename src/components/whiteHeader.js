@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native'
 import { Container, Icon,  Header, Left, Body, Right, Button, Thumbnail, Title, Text } from 'native-base';
 
-export default class GreenHeader extends Component {
+export default class WhiteHeader extends Component {
     render() {
         return (
             <Header style={styles.header}>
@@ -19,6 +19,6 @@ export default class GreenHeader extends Component {
 
 const styles = StyleSheet.create({
     header: {
-        backgroundColor: 'green'
+        backgroundColor: 'white',
     }
 })

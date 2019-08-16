@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { createStackNavigator, createAppContainer, createBottomTabNavigator, BottomTabBar } from 'react-navigation'
-import Explore from './src/screens/explore'
+import ExploreNavigator from './src/screens/explore'
 import Wishlist from './src/screens/wishlist'
 import Chat from './src/screens/chat'
 import Login from './src/screens/login'
@@ -9,7 +9,7 @@ import Login from './src/screens/login'
 const BottomNavigator = createBottomTabNavigator(
   {
     Explore: {
-      screen: Explore,
+      screen: ExploreNavigator,
       navigationOptions: {
         tabBarLabel: 'Explore',
         tabBarIcon: ({ tintColor }) => (<Ionicons name='ios-search' size={28}  color={tintColor} />)

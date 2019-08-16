@@ -1,41 +1,180 @@
 import React, { Component } from 'react'
-import { StyleSheet, KeyboardAvoidingView } from 'react-native'
-import { Col, Row, Grid } from "react-native-easy-grid";
-import { Container, 
-        Content, 
-        Icon,  
-        Header, 
-        Left, 
-        Body, 
-        Right, 
-        Button, 
-        Thumbnail, 
-        Title, 
-        Text, 
-        View} from 'native-base'
-import { SearchBar } from 'react-native-elements'
+import { View, Text, TouchableHighlight, TouchableOpacity } from 'react-native'
+import { Icon } from 'native-base'
 import { createAppContainer, createStackNavigator } from 'react-navigation'
 
-import WhiteHeader from '../components/whiteHeader'
-import ListView from '../screens/listView'
+import ListView from './listView'
+import Promo from '../components/promo'
 
 class Explore extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            search: ""
-        }
-    }
-
-    updateSearch = (search) => {
-        this.setState({
-            search: search
-        })
-    }
+    
+    static navigationOptions= ({ navigation }) => (
+        {
+            headerStyle: {
+            elevation: 0,
+            },
+            headerLeft: (
+                <TouchableHighlight>
+                    <Icon name="barcode" size={28} style={{ color: 'green', paddingLeft: 8}}/>
+                </TouchableHighlight>
+            ),
+            title: 'mamikos.com',
+            headerTitleStyle: {
+                color: 'green'
+            },
+            headerRight: (
+                <TouchableHighlight onPress={() => (navigation.navigate('ListView'))}>
+                    <Icon name='search' size={28} style={{ color: 'green', paddingRight: 10}}/>
+                </TouchableHighlight>
+            )
+        } 
+        
+        )
+    
+            
 
     render() {
+        
         return (
-        <Container>
+            <View style={{backgroundColor: '#e8edea'}}>
+                <View style={{backgroundColor: 'white', paddingTop: 9, flexDirection: 'row', justifyContent: 'space-between'}}>
+                    <TouchableOpacity style={{ flex: 1, justifyContent:'center', alignItems:'center'}}>
+                        <Icon name='bed' style={{ color: 'green'}}/>
+                        <Text style={{ color: 'green'}}>Kostan</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ flex: 1, justifyContent:'center', alignItems:'center'}}>
+                        <Icon name='business' style={{ color: 'green'}}/>
+                        <Text style={{ color: 'green'}}>Hotel</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ flex: 1, justifyContent:'center', alignItems:'center'}}>
+                        <Icon name='basket' style={{ color: 'green'}}/>
+                        <Text style={{ color: 'green'}}>Toko</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{ flex: 1, justifyContent:'center', alignItems:'center'}}>
+                        <Icon name='briefcase' style={{ color: 'green'}}/>
+                        <Text style={{ color: 'green'}}>Kerja</Text>
+                    </TouchableOpacity>
+                </View>
+                <Promo />
+            </View>
+        )
+    }
+}
+
+
+
+const ExploreNavigator = createStackNavigator(
+        {
+            Explore: Explore,
+            ListView: ListView,
+        },
+        {
+            initialRouteName: 'Explore',
+            headerMode: 'screen'
+        }
+    
+)
+
+export default ExploreNavigator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React, { Component } from 'react'
+// import { Animated, Dimensions, StyleSheet, Image, TouchableHighlight, TouchableOpacity, View, Text, Platform } from 'react-native'
+// import Slideshow from 'react-native-slideshow'
+// import { Container, Icon } from 'native-base'
+// import { createAppContainer, createStackNavigator } from 'react-navigation'
+
+// import WhiteHeader from '../components/whiteHeader'
+// import ListView from '../screens/listView'
+
+// class Explore extends Component {
+//     render() {
+//         return (
+//             <View style={{backgroundColor: '#e8edea'}}>
+//                 <View style={{backgroundColor: 'white', paddingTop: 9, flexDirection: 'row', justifyContent: 'space-between'}}>
+//                     <TouchableOpacity style={{ flex: 1, justifyContent:'center', alignItems:'center'}}>
+//                         <Icon name='bed' style={{ color: 'green'}}/>
+//                         <Text style={{ color: 'green'}}>Kostan</Text>
+//                     </TouchableOpacity>
+//                     <TouchableOpacity style={{ flex: 1, justifyContent:'center', alignItems:'center'}}>
+//                         <Icon name='business' style={{ color: 'green'}}/>
+//                         <Text style={{ color: 'green'}}>Hotel</Text>
+//                     </TouchableOpacity>
+//                     <TouchableOpacity style={{ flex: 1, justifyContent:'center', alignItems:'center'}}>
+//                         <Icon name='basket' style={{ color: 'green'}}/>
+//                         <Text style={{ color: 'green'}}>Toko</Text>
+//                     </TouchableOpacity>
+//                     <TouchableOpacity style={{ flex: 1, justifyContent:'center', alignItems:'center'}}>
+//                         <Icon name='briefcase' style={{ color: 'green'}}/>
+//                         <Text style={{ color: 'green'}}>Kerja</Text>
+//                     </TouchableOpacity>
+//                 </View>
+//             </View>
+//         );
+//     }
+// }
+
+// const ExploreNavigator = createStackNavigator(
+//     {
+//         Explore: {
+//             screen: Explore,
+//             navigationOptions: {
+//                 headerStyle: {
+//                     elevation: 0,
+//                 },
+//                 headerLeft: (
+//                     <TouchableHighlight>
+//                         <Icon name="barcode" size={28} style={{ color: 'green', paddingLeft: 8}}/>
+//                     </TouchableHighlight>
+//                 ),
+//                 title: 'mamikos.com',
+//                 headerTitleStyle: {
+//                     color: 'green'
+//                 },
+//                 headerRight: (
+//                     <TouchableHighlight>
+//                         <Icon name='search' size={28} style={{ color: 'green', paddingRight: 10}}/>
+//                     </TouchableHighlight>
+//                 )
+//             }
+//         },
+//         ListView: ListView,
+//     },
+//     {
+//         initialRouteName: 'Explore',
+//         headerMode: 'float'
+//     }
+// )
+
+// export default createAppContainer(ExploreNavigator)
+
+
+
+
+
+
+
+
+
+
+//LEGACY
+
+{/* <Container>
                 <WhiteHeader 
                     button={<Button transparent>
                                 <Icon name='home' style={{ color: 'green'}}/>
@@ -69,7 +208,7 @@ class Explore extends Component {
                             </Button>
                         </Col>
                     </Row>
-                    <Row size={10} style={{ borderColor: 'green', backgroundColor: 'white', marginTop: 2}}>
+                    <Row size={20} style={{backgroundColor: 'white'}}>
                         <View style={styles.textAndSearchbar}>
                             <Row size={1}>
                                 <Text style={styles.haiStyle}>Hai, mau cari kost di mana?</Text>
@@ -88,75 +227,4 @@ class Explore extends Component {
                         </View>
                     </Row>
                 </Grid>
-            </Container>
-        );
-    }
-}
-
-const ExploreNavigator = createStackNavigator(
-    {
-        Explore: Explore,
-        ListView: ListView,
-    },
-    {
-        initialRouteName: 'Explore',
-        headerMode: 'none'
-    }
-)
-
-export default createAppContainer(ExploreNavigator)
-
-const styles = StyleSheet.create({
-    inputContainerStyleSearchbar: {
-        backgroundColor: 'white', 
-        borderWidth:1, 
-        borderColor: 'white',
-        borderRadius: 50,
-        height: 5
-    },
-    containerStyleSearchbar: {
-        backgroundColor: 'white',
-        borderColor: 'gray',
-        borderWidth: 1,
-        borderRadius: 5,
-        width: 350,
-        borderRadius: 50,
-        marginTop: 12,
-        height: 44,
-    },
-    whiteColor: {
-        color: 'white'
-    },
-    containerHead: {
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-
-        elevation: 5,
-    },
-    containerServices: {
-        marginBottom: 2,
-    },
-    greenColor: {
-        color: 'green',
-    },
-    silverColor: {
-        color: 'gray'
-    },
-    haiStyle: { 
-        fontSize: 23, 
-        marginLeft: 20,
-        color: 'green'
-    },
-    textAndSearchbar: {
-        alignSelf: 'center',
-        marginHorizontal: 35,
-        marginBottom: 400,
-        paddingBottom: 10,
-        backgroundColor: 'transparent'
-    }
-})
+            </Container> */}

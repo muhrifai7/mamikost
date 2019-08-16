@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, ScrollView, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { View, Image, ScrollView, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 
 const promos = [
@@ -15,24 +15,30 @@ const promos = [
 ]
 
 export default class Promo extends Component {
+
     render() {
         return (
-            <ScrollView horizontal={true}>
-                {promos.map((link, index) => {
-                    return (
-                        <Card key={index} style={{height: 250, marginHorizontal: 10}} transparent >
+            <View>
+                <View style={{ paddingLeft: 20, paddingTop: 20, paddingBottom: 2}}>
+                    <Text>Promo</Text>
+                </View>
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true}>
+                    {promos.map((link, index) => {
+                        return (
+                            <Card key={index} style={{flex: 1, height: 200, width: 400, marginHorizontal: 10}} transparent >
                                 <CardItem style={{flexDirection: 'column'}}>
                                     <TouchableHighlight>
                                         <Image 
                                             source={{uri: link.imageUrl}} 
-                                            style={{height: 160, width: 500, flex: 1}}
+                                            style={{ flex: 1, aspectRatio: 2.5, resizeMode: 'contain'}}
                                         />
                                     </TouchableHighlight>
                                 </CardItem>
-                        </Card>
-                    )
-                })}
-            </ScrollView>
+                            </Card>
+                        )
+                    })}
+                </ScrollView>
+            </View>
         )
     }
 }

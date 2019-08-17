@@ -3,21 +3,17 @@ import { Container,  Header, Left, Body, Right, Title } from 'native-base';
 import { TextInput, StyleSheet, View, Button, Text, Image, TouchableOpacity } from 'react-native'
 import { createStackNavigator } from 'react-navigation'
 
-import Signup from './signup'
-import Profile from './profile'
-import ListAds from './listAds'
 
-
-class Login extends Component {
+export default class Signup extends Component {
     static navigationOptions = ({ navigation }) => (
         {
-            title: 'Login',
+            headerStyle: {
+                elevation: 0,
+            },
             headerTitleStyle: {
                 color: 'green'
             },
-            headerStyle: {
-                elevation: 0
-            }
+            title: 'Sign Up',
         }
     )
 
@@ -25,17 +21,16 @@ class Login extends Component {
         return (
             <View>
                 <View style={{ justifyContent: 'center'}}>
-                    <Image style={styles.imgResize} source={require('../assets/img/undraw_synchronize_ccxk.png')}/>
+                    <Image style={styles.imgResize} source={require('../assets/img/undraw_Hello_qnas.png')}/>
                 </View>
                 <View style={{ justifyContent: 'center'}}>
-                    <TextInput style={styles.textInput} placeholder='Username'/>
+                    <TextInput style={styles.textInput} placeholder='Email address'/>
+                    <TextInput style={styles.textInput} placeholder='Username' />
                     <TextInput style={styles.textInput} placeholder='Password' />
+                    <TextInput style={styles.textInput} placeholder='Repeat Password' />
                 </View>
                 <View style={{ justifyContent: 'center'}}>
-                    <TouchableOpacity style={styles.buttonLogin} onPress={() => this.props.navigation.navigate('Profile')}>
-                        <Text style={styles.text}>Login</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonRegister} onPress={() => this.props.navigation.navigate('Signup')}>
+                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Profile')}>
                         <Text style={styles.text}>Sign Up</Text>
                     </TouchableOpacity>
                 </View>
@@ -43,22 +38,6 @@ class Login extends Component {
         );
     }
 }
-
-const RegistrationNavigator = createStackNavigator(
-    {
-        Login: Login,
-        Signup: Signup,
-        Profile: Profile,
-        ListAds: ListAds
-    },
-    {
-        initialRouteName: 'Login',
-        headerMode: 'float'
-    }
-
-)
-
-export default RegistrationNavigator
 
 const styles = StyleSheet.create({
     imgResize: {
@@ -75,34 +54,21 @@ const styles = StyleSheet.create({
         width: 300, 
         paddingLeft: 20,
         marginBottom: 10,
-        
     },
     container: {
         flex: 1,
         justifyContent: 'center',
         paddingHorizontal: 10
     },
-    buttonLogin: {
+    button: {
         alignItems: 'center',
         alignSelf: 'center',
         backgroundColor: 'green',
         padding: 20,
         paddingTop: 15,
         width: 300,
-        borderRadius: 20,
-        elevation: 7,
-        marginTop: 10
-    },
-    buttonRegister: {
-        alignItems: 'center',
-        alignSelf: 'center',
-        backgroundColor: 'gray',
-        padding: 20,
-        paddingTop: 15,
-        width: 300,
         borderRadius: 25,
-        elevation: 7,
-        marginTop: 10
+        elevation: 7
     },
     text: {
         fontSize: 20,

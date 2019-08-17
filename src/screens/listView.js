@@ -14,12 +14,19 @@ import { Container,
         Item, 
         Input } from 'native-base'
 import { SearchBar } from 'react-native-elements'
-import { withNavigation } from 'react-navigation'
+import { withNavigation, createMaterialTopTabNavigator } from 'react-navigation'
 
-export default class Listview extends Component {
+import MapViewer from './mapView'
+import ListDorm from './listDorm'
+
+
+class ListView extends Component {
 
     static navigationOptions = ({ navigation }) => (
         {
+            headerStyle: {
+                elevation: 0
+            },
             header: (
                 <Container>
                     <Header searchBar rounded style={styles.header}>
@@ -39,25 +46,78 @@ export default class Listview extends Component {
                         </Button>
                     </Header>
                 </Container>
-            )
+            ),
+            
         }
     )
 
     render() {
         return (
             <View>
-                
+
             </View>
         )
     }
 }
 
+const ListViewNav = createMaterialTopTabNavigator(
+    {
+        MapViewer: {
+            screen: MapViewer,
+            navigationOptions: {
+                title: 'Lihat Peta'
+            }
+        },
+        ListDorm: {
+            screen: ListDorm,
+            navigationOptions: {
+                title: 'Lihat Daftar'
+            }
+        }
+    },
+    {
+        headerMode: 'none',
+        swipeEnabled: true,
+        tabBarOptions: {
+            activeTintColor: 'green',
+            inactiveTintColor: 'gray',
+            style: {
+                backgroundColor: 'white'
+            },
+            indicatorStyle: {
+                backgroundColor: 'green'
+            }
+            
+        },
+        
+    }
+)
+
+export default ListViewNav
+
 
 const styles = StyleSheet.create({
-    header: { backgroundColor:'white'},
-    left: { paddingLeft: 6, flex: 0, width: 62 },
-    backButton: {backgroundColor: 'white', elevation: 0},
-    backArrow: {backgroundColor: 'white', color: 'green'},
-    item: { elevation: 5},
-    icon: {color: 'green'}
+    header: { 
+        backgroundColor:'white',
+        elevation: 0
+    },
+    left: { 
+        paddingLeft: 6, 
+        flex: 0, 
+        width: 62 
+    },
+    backButton: {
+        backgroundColor: 'white', 
+        elevation: 0
+    },
+    backArrow: {
+        backgroundColor: 'white', 
+        color: 'green'
+    },
+    item: { 
+        elevation: 5
+    },
+    icon: {
+        color: 'green'
+    }
 })

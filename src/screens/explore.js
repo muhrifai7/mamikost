@@ -4,7 +4,7 @@ import { Icon } from 'native-base'
 import { createStackNavigator } from 'react-navigation'
 
 
-import ListView from './listView'
+import ListViewNav from './listView'
 import Promo from '../components/promo'
 import Place from '../components/place'
 
@@ -13,11 +13,11 @@ class Explore extends Component {
     static navigationOptions= ({ navigation }) => (
         {
             headerStyle: {
-            elevation: 0,
+                elevation: 0,
             },
             headerLeft: (
                 <TouchableHighlight>
-                    <Icon name="barcode" size={28} style={styles.iconGreen}/>
+                    <Icon name="flame" size={30} style={styles.iconGreen}/>
                 </TouchableHighlight>
             ),
             title: 'mamikos.com',
@@ -25,9 +25,9 @@ class Explore extends Component {
                 color: 'green'
             },
             headerRight: (
-                <TouchableHighlight onPress={() => (navigation.navigate('ListView'))}>
+                <TouchableOpacity onPress={() => (navigation.navigate('ListView'))}>
                     <Icon name='search' size={28} style={{color: 'green', marginRight: 14}}/>
-                </TouchableHighlight>
+                </TouchableOpacity>
             )
         } 
         
@@ -35,7 +35,7 @@ class Explore extends Component {
     
     render() {
         return (
-            <View style={{backgroundColor: '#white'}}>
+            <View style={{flex: 1, backgroundColor: '#white'}}>
                 <View style={styles.servicesWrapper}>
                     <TouchableOpacity style={styles.services}>
                         <Icon name='bed' style={styles.iconGreen}/>
@@ -54,8 +54,18 @@ class Explore extends Component {
                         <Text style={styles.iconGreen}>Kerja</Text>
                     </TouchableOpacity>
                 </View>
-                <ScrollView horizontal={false}>
+                <ScrollView>
                     <Promo />
+                    <View style={styles.adsBorder}>
+                        <View style={{flex: 2, alignSelf: 'center'}}>
+                            <Text style={{marginLeft: 20, fontSize: 24, color: 'green'}}>Ingin pasang iklan?</Text>
+                        </View>
+                        <View style={{flex: 1, alignSelf: 'center'}}>
+                            <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Login')}>
+                                <Text style={styles.text}>Pasang</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
                     <Place />
                 </ScrollView>
             </View>
@@ -68,11 +78,11 @@ class Explore extends Component {
 const ExploreNavigator = createStackNavigator(
         {
             Explore: Explore,
-            ListView: ListView,
+            ListView: ListViewNav,
         },
         {
             initialRouteName: 'Explore',
-            headerMode: 'screen'
+            headerMode: 'float'
         }
     
 )
@@ -85,6 +95,15 @@ const styles = StyleSheet.create({
         color: 'green',
         marginLeft: 20,
     },
+    adsBorder: { 
+        flexDirection: 'row', 
+        justifyContent: 'flex-start', 
+        marginVertical: 20, 
+        borderWidth: 1, 
+        borderColor: 'silver', 
+        borderRadius: 23, 
+        marginHorizontal: 10
+    },
     services: {
         flex: 1, 
         justifyContent:'center', 
@@ -95,5 +114,19 @@ const styles = StyleSheet.create({
         paddingTop: 9, 
         flexDirection: 'row', 
         justifyContent: 'space-between'
+    },
+    text: {
+        color: 'white'
+    },
+    button: {
+        alignItems: 'center',
+        alignSelf: 'center',
+        backgroundColor: 'green',
+        padding: 18,
+        paddingTop: 16,
+        width: 100,
+        borderRadius: 20,
+        elevation: 10,
+        margin: 4
     },
 })

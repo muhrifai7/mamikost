@@ -5,6 +5,18 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import ListAds from './listAds'
 
 export default class Profile extends Component { 
+    static navigationOptions = ({ navigation }) => (
+        {
+            title: 'Profil Saya',
+            headerTitleStyle: {
+                color: 'green'
+            },
+            headerStyle: {
+                elevation: 0
+            }
+        }
+    )
+
     render(){
         return(
             <ScrollView>

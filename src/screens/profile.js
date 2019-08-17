@@ -29,7 +29,7 @@ export default class Profile extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.card} onPress={() => this.props.navigation.navigate('ListAds')}>
                         <Icon name="ios-images" size={30} color='#00a663' />
-                        <Text style={styles.Text}>Data Iklan</Text>
+                        <Text style={styles.Text}>Data dan Pasang Iklan</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.card}>
                         <Icon name="ios-create" size={30} color='#00a663' />

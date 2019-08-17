@@ -6,6 +6,7 @@ import { createStackNavigator } from 'react-navigation'
 import Signup from './signup'
 import Profile from './profile'
 import ListAds from './listAds'
+import FormAds from './formAds'
 
 
 class Login extends Component {
@@ -49,7 +50,8 @@ const RegistrationNavigator = createStackNavigator(
         Login: Login,
         Signup: Signup,
         Profile: Profile,
-        ListAds: ListAds
+        ListAds: ListAds,
+        FormAds: FormAds
     },
     {
         initialRouteName: 'Login',

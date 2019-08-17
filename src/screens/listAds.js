@@ -84,8 +84,8 @@ export default class ListAds extends Component {
                     keyExtractor={this._keyExtrractor}
                     renderItem={({ item }) => (
                         <View key={item.id} style={styles.card}>
-                            <Image source={{uri: item.image}} style={{ borderRadius: 20, width: 100, height: 90, alignSelf: 'center', flex:1}} />
-                            <View style={{flexDirection: 'column', flex: 1.5, paddingLeft: 2, justifyContent: 'center', alignItems: 'center'}}>
+                            <Image source={{uri: item.image}} style={styles.image} />
+                            <View style={styles.text}>
                                 <Text style={{ fontWeight: 'bold'}}>
                                     {item.name}
                                 </Text>
@@ -97,20 +97,10 @@ export default class ListAds extends Component {
                     )}
                 />
                 <View style={{ alignItems: 'center'}}>
-                    <TouchableOpacity style={{
-                            paddingTop: 8,
-                            position: 'absolute',
-                            bottom: 8,
-                            backgroundColor:'green',
-                            width: 380,
-                            height: 50,
-                            borderRadius: 20,
-                            borderWidth: 0,
-                            marginVertical: 100,
-                            marginHorizontal: 15,
-                            elevation: 7,
-                            alignItems: 'center'
-                        }}>
+                    <TouchableOpacity 
+                        style={styles.button}
+                        onPress= {() => this.props.navigation.navigate('FormAds')}
+                    >
                         <Text style={{alignSelf: 'center', color: 'white', fontSize: 20}}>Pasang Iklan</Text>
                     </TouchableOpacity>
                 </View>
@@ -144,5 +134,33 @@ const styles = StyleSheet.create({
         elevation: 6,
         flexDirection: 'row',
         alignContent: 'center'
+    },
+    button: {
+        paddingTop: 8,
+        position: 'absolute',
+        bottom: 8,
+        backgroundColor:'green',
+        width: 380,
+        height: 50,
+        borderRadius: 20,
+        borderWidth: 0,
+        marginVertical: 100,
+        marginHorizontal: 15,
+        elevation: 7,
+        alignItems: 'center'
+    },
+    image: { 
+        borderRadius: 20, 
+        width: 100, 
+        height: 90, 
+        alignSelf: 'center', 
+        flex:1
+    },
+    text: {
+        flexDirection: 'column', 
+        flex: 1.5, 
+        paddingLeft: 2, 
+        justifyContent: 'center', 
+        alignItems: 'center'
     }
 })

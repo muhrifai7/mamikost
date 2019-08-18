@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Image, View, ScrollView, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 
+import CityDetail from '../screens/cityDetail'
+
 const cities = [
     {
         city: 'DKI Jakarta',
@@ -37,7 +39,7 @@ export default class Places extends Component {
                         return (
                             <Card key={index} style={{height: 240, marginHorizontal: 10}} transparent >
                                     <CardItem style={{flexDirection: 'column'}} cardBody>
-                                        <TouchableOpacity>
+                                        <TouchableOpacity onPress={this.props.action}>
                                             <Image 
                                                 source={{uri: link.imageUrl}} 
                                                 style={{height: 140, width: 130, flex: 1}}

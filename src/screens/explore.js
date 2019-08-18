@@ -7,6 +7,7 @@ import { createStackNavigator } from 'react-navigation'
 import ListViewNav from './listView'
 import Promo from '../components/promo'
 import Place from '../components/place'
+import CityDetail from '../screens/cityDetail'
 
 class Explore extends Component {
     
@@ -66,7 +67,7 @@ class Explore extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <Place />
+                    <Place action={() => this.props.navigation.navigate('CityDetail')}/>
                 </ScrollView>
             </View>
         )
@@ -79,6 +80,7 @@ const ExploreNavigator = createStackNavigator(
         {
             Explore: Explore,
             ListView: ListViewNav,
+            CityDetail: CityDetail
         },
         {
             initialRouteName: 'Explore',
@@ -90,7 +92,7 @@ const ExploreNavigator = createStackNavigator(
 ExploreNavigator.navigationOptions = ({navigation}) => {
     let { routeName } = navigation.state.routes[navigation.state.index]
         let navigationOptions = {}
-        if ( routeName === 'ListView') {
+        if ( routeName === 'ListView' || routeName === 'CityDetail') {
             navigationOptions.tabBarVisible = false
         }
         return navigationOptions

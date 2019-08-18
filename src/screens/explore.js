@@ -87,6 +87,15 @@ const ExploreNavigator = createStackNavigator(
     
 )
 
+ExploreNavigator.navigationOptions = ({navigation}) => {
+    let { routeName } = navigation.state.routes[navigation.state.index]
+        let navigationOptions = {}
+        if ( routeName === 'ListView') {
+            navigationOptions.tabBarVisible = false
+        }
+        return navigationOptions
+}
+
 export default ExploreNavigator
 
 

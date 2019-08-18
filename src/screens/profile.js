@@ -13,7 +13,7 @@ export default class Profile extends Component {
             },
             headerStyle: {
                 elevation: 0
-            }
+            },
         }
     )
 
@@ -37,7 +37,7 @@ export default class Profile extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate('BookingPage')} style={styles.card}>
                         <Icon name="ios-paper" size={30} color='#00a663' />
-                        <Text style={styles.Text}>Booking List</Text>
+                        <Text style={styles.Text}>Daftar Pemesanan</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.card} onPress={() => this.props.navigation.navigate('ListAds')}>
                         <Icon name="ios-images" size={30} color='#00a663' />
@@ -45,15 +45,11 @@ export default class Profile extends Component {
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.card}>
                         <Icon name="ios-create" size={30} color='#00a663' />
-                        <Text style={styles.Text}>Account Verification </Text>
+                        <Text style={styles.Text}>Verifikasi Akun </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.card}>
                         <Icon name="ios-settings" size={30} color='#00a663'/>
                         <Text style={styles.Text}>Pengaturan</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.card} >
-                        <Icon name='ios-call' size={30} color='#00a663' />
-                        <Text style={styles.Text}>Hubungi CS</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.card} >
                         <Icon name='ios-call' size={30} color='#00a663' />
@@ -78,6 +74,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginLeft: 20,
         marginRight: 20,
+        marginBottom: 15,
         flexDirection: 'row',
         shadowColor: "#000",
         shadowOffset: {

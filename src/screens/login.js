@@ -62,6 +62,15 @@ const RegistrationNavigator = createStackNavigator(
 
 export default RegistrationNavigator
 
+RegistrationNavigator.navigationOptions = ({navigation}) => {
+    let { routeName } = navigation.state.routes[navigation.state.index]
+        let navigationOptions = {}
+        if ( routeName === 'Profile' || routeName === 'ListAds' || routeName === 'FormAds') {
+            navigationOptions.tabBarVisible = false
+        }
+        return navigationOptions
+}
+
 const styles = StyleSheet.create({
     imgResize: {
         height: 175,

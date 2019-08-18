@@ -7,6 +7,7 @@ import Signup from './signup'
 import Profile from './profile'
 import ListAds from './listAds'
 import FormAds from './formAds'
+import Booklist from './booklist'
 
 
 class Login extends Component {
@@ -51,7 +52,8 @@ const RegistrationNavigator = createStackNavigator(
         Signup: Signup,
         Profile: Profile,
         ListAds: ListAds,
-        FormAds: FormAds
+        FormAds: FormAds,
+        Booklist: Booklist
     },
     {
         initialRouteName: 'Login',
@@ -65,7 +67,7 @@ export default RegistrationNavigator
 RegistrationNavigator.navigationOptions = ({navigation}) => {
     let { routeName } = navigation.state.routes[navigation.state.index]
         let navigationOptions = {}
-        if ( routeName === 'Profile' || routeName === 'ListAds' || routeName === 'FormAds') {
+        if ( routeName === 'Profile' || routeName === 'Booklist' || routeName === 'Signup' || routeName === 'ListAds' || routeName === 'FormAds') {
             navigationOptions.tabBarVisible = false
         }
         return navigationOptions
@@ -97,6 +99,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center',
         backgroundColor: 'green',
+        height: 20,
         padding: 20,
         paddingTop: 15,
         width: 300,
@@ -108,6 +111,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center',
         backgroundColor: 'gray',
+        height: 20,
         padding: 20,
         paddingTop: 15,
         width: 300,
@@ -115,7 +119,8 @@ const styles = StyleSheet.create({
         elevation: 7,
         marginTop: 10
     },
-    text: {
+    text:{
+        bottom: 10,
         fontSize: 20,
         color: 'white',
         alignSelf: 'center'

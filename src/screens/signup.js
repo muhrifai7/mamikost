@@ -68,9 +68,11 @@ const styles = StyleSheet.create({
         paddingTop: 15,
         width: 300,
         borderRadius: 25,
-        elevation: 7
+        elevation: 7,
+        height: 20,
     },
     text: {
+        bottom: 10,
         fontSize: 20,
         color: 'white',
         alignSelf: 'center'

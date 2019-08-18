@@ -3,6 +3,7 @@ import { StyleSheet, TouchableOpacity, Text, Image, View, ScrollView} from 'reac
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import ListAds from './listAds'
+import Booklist from './booklist'
 
 export default class Profile extends Component { 
     static navigationOptions = ({ navigation }) => (
@@ -35,7 +36,7 @@ export default class Profile extends Component {
                             <Text style={ styles.Text }>Kost Saya</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('BookingPage')} style={styles.card}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Booklist')} style={styles.card}>
                         <Icon name="ios-paper" size={30} color='#00a663' />
                         <Text style={styles.Text}>Daftar Pemesanan</Text>
                     </TouchableOpacity>

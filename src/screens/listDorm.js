@@ -4,6 +4,8 @@ import { TouchableWithoutFeedback, Button, Image, TextInput, FlatList, StyleShee
 import { SearchBar } from 'react-native-elements'
 import { withNavigation, createMaterialTopTabNavigator } from 'react-navigation'
 
+import FilterPage from './filterPage'
+
 
 const dorms = [
     {
@@ -56,7 +58,7 @@ export default class ListDorm extends Component {
                     data={dorms}
                     keyExtractor={this._keyExtrractor}
                     renderItem={({ item }) => (
-                        <View key={item.id} style={styles.card}>
+                        <TouchableOpacity key={item.id} style={styles.card}>
                             <Image source={{uri: item.image}} style={styles.image} />
                             <View style={styles.text}>
                                 <Text sytle={{ flexDirection: 'row', alignContent: 'space-between'}}>
@@ -74,14 +76,15 @@ export default class ListDorm extends Component {
                                     <Text style={{ color: 'white', alignSelf: 'center'}}>Bisa Pesan</Text>
                                 </View>
                             </View>
-                        </View>
+                        </TouchableOpacity>
                     )}
                 />
                 <View style={{ flex:1, flexDirection: 'row'}}>
                         <TouchableOpacity 
                             style={styles.buttonFilter}
+                            onPress={() => this.props.navigation.navigate('FilterPage')}
                         >
-                            <Text style={{alignSelf: 'center', color: 'green', fontSize: 20}}>Filter</Text>
+                            <Text style={{alignSelf: 'center', color: 'green', fontSize: 20}} >Filter</Text>
                         </TouchableOpacity>
                     
                 

@@ -2,23 +2,8 @@ import React, { Component } from 'react'
 import { Rating, AirbnbRating } from 'react-native-elements'
 import { View, Image, ScrollView, TouchableHighlight, TouchableOpacity } from 'react-native'
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Item } from 'native-base'
-import { thisTypeAnnotation } from '@babel/types';
 
-
-// const images = [
-//                 'https://static.mamikos.com/uploads/cache/data/style/2018-09-13/8gne9yTm-540x720.jpg',
-//                 'https://static.mamikos.com/uploads/cache/data/style/2018-08-03/3PE552FE-540x720.jpg',
-//                 'https://static.mamikos.com/uploads/cache/data/style/2018-08-03/1drds2VV-540x720.jpg'
-//                 ]
-
-// const details = {
-//         city: 'Medan',
-//         type: 'Campur',
-//         name: "Kost D'eiffel Medan Petisah",
-//         latestUpdate: '12 Agustus 2019',
-//         cost: 1600000,
-//         room: 3,
-// }    
+import Booking from './booking'
 
 const icons = [
     {
@@ -49,6 +34,26 @@ export default class DetailView extends Component {
         isPhoto:true
     }
 
+    share = async () => {
+        try {
+            const result = await Share.share({
+                message:
+                'React Native | A framework for building native apps using React',
+            });
+            if (result.action === Share.sharedAction) {
+                if (result.activityType) {
+                // shared with activity type of result.activityType
+                } else {
+                // shared
+                }
+            } else if (result.action === Share.dismissedAction) {
+                // dismissed
+            }
+            } catch (error) {
+            alert(error.message);
+            }
+        };
+
     static navigationOptions = ({ navigation }) => (
         {
             headerRight: (
@@ -56,7 +61,7 @@ export default class DetailView extends Component {
                     <TouchableOpacity>
                         <Icon style={{ color: 'red' , marginRight: 20}} name='ios-heart-empty' size={28} />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onpress={this.share}>
                         <Icon style={{ color: 'gray', marginRight: 20}} name='share' size={28} />
                     </TouchableOpacity>
                 </View>
@@ -67,6 +72,8 @@ export default class DetailView extends Component {
             },
         }
     )
+
+    
 
 
     _isViewRendered(isPhoto, item){
@@ -256,7 +263,7 @@ export default class DetailView extends Component {
                         <TouchableOpacity style={{flex:1, justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderRadius: 5, borderColor: 'red', marginRight: 5, paddingLeft: 20}}>
                             <Text style={{flex:1, alignSelf: 'center', color: 'red', fontWeight: 'bold'}}>Hubungi kost</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{flex:1, justifyContent: 'center', borderRadius: 5, backgroundColor: 'red', paddingLeft: 25}}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Booking')}  style={{flex:1, justifyContent: 'center', borderRadius: 5, backgroundColor: 'red', paddingLeft: 25}}>
                             <Text style={{color: 'white'}}>Pesan</Text>
                         </TouchableOpacity>
                     </View>

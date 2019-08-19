@@ -33,6 +33,8 @@ target 'mamiclone' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'RNShare', :path => '../node_modules/react-native-share'
+
   target 'mamicloneTests' do
     inherit! :search_paths
     # Pods for testing

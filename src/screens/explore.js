@@ -11,6 +11,8 @@ import Place from '../components/place'
 import CityDetail from '../screens/cityDetail'
 import ListDorm from '../screens/listDorm'
 import FilterPage from './filterPage'
+import Booking from './booking'
+import Booklist from './booklist'
 
 class Explore extends Component {
     
@@ -86,7 +88,9 @@ const ExploreNavigator = createStackNavigator(
             ListDorm:ListDorm,
             DetailView: DetailView,
             CityDetail: CityDetail,
-            FilterPage: FilterPage
+            FilterPage: FilterPage,
+            Booking: Booking,
+            Booklist:Booklist
         },
         {
             initialRouteName: 'Explore',

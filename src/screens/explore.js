@@ -10,6 +10,7 @@ import Promo from '../components/promo'
 import Place from '../components/place'
 import CityDetail from '../screens/cityDetail'
 import ListDorm from '../screens/listDorm'
+import FilterPage from './filterPage'
 
 class Explore extends Component {
     
@@ -84,7 +85,8 @@ const ExploreNavigator = createStackNavigator(
             ListView: ListViewNav,
             ListDorm:ListDorm,
             DetailView: DetailView,
-            CityDetail: CityDetail
+            CityDetail: CityDetail,
+            FilterPage: FilterPage
         },
         {
             initialRouteName: 'Explore',
@@ -96,7 +98,7 @@ const ExploreNavigator = createStackNavigator(
 ExploreNavigator.navigationOptions = ({navigation}) => {
     let { routeName } = navigation.state.routes[navigation.state.index]
         let navigationOptions = {}
-        if ( routeName === 'ListView' || routeName === 'CityDetail') {
+        if ( routeName === 'ListView' || routeName === 'FilterPage' || routeName === 'CityDetail') {
             navigationOptions.tabBarVisible = false
         }
         return navigationOptions

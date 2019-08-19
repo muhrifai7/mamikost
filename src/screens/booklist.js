@@ -103,7 +103,7 @@ export default class Booklist extends Component {
                     data={books}
                     keyExtractor={this._keyExtrractor}
                     renderItem={({ item }) => (
-                        <View key={item.id} style={styles.card}>
+                        <TouchableOpacity key={item.id} style={styles.card}>
                             <Image source={{uri: item.image}} style={styles.image} />
                             <View style={styles.text}>
                                 <Text style={{alignSelf: 'flex-start', fontWeight: 'bold'}}>
@@ -131,7 +131,7 @@ export default class Booklist extends Component {
                                     <Text style={{ color: 'silver', alignSelf: 'center'}}>Menunggu Konfirmasi</Text>
                                 </View>
                             </View>
-                        </View>
+                        </TouchableOpacity>
                     )}
                 />
             </View>

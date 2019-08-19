@@ -5,6 +5,7 @@ import { SearchBar } from 'react-native-elements'
 import { withNavigation, createMaterialTopTabNavigator } from 'react-navigation'
 
 import FilterPage from './filterPage'
+import DetailView from './detailView'
 
 
 const dorms = [
@@ -15,6 +16,7 @@ const dorms = [
         room: 3,
         cost: 1600000,
         name: "Kost D'eiffel Medan Petisah",
+        latestUpdate: '12 juni 2019',
         image: 'https://static.mamikos.com/uploads/cache/data/style/2019-07-03/ZIihOxY2-540x720.jpg'
     },
     {
@@ -23,6 +25,7 @@ const dorms = [
         city: 'Medan',
         room: 5,
         cost: 1000000,
+        latestUpdate: '1 Juli 2019',
         name: "Kost Seikera Gg Rezeki Medan Perjuangan",
         image: 'https://static.mamikos.com/uploads/cache/data/style/2018-12-14/YzhzNQsY-540x720.jpg'
     },
@@ -32,6 +35,7 @@ const dorms = [
         city: 'Jakarta Selatan',
         room: 2,
         cost: 2500000,
+        latestUpdate: '4 Agustus 2019',
         name: "Kost Mampang Ceria",
         image: 'https://static.mamikos.com/uploads/cache/data/style/2019-08-09/HpPoK7Yf-540x720.jpg'
     },
@@ -41,6 +45,7 @@ const dorms = [
         city: 'Bogor',
         room: 2,
         cost: 1000000,
+        latestUpdate: '19 Agustus 2019',
         name: "Kost IPB",
         image: 'https://static.mamikos.com/uploads/cache/data/style/2019-07-03/ZIihOxY2-540x720.jpg'
     }
@@ -58,7 +63,7 @@ export default class ListDorm extends Component {
                     data={dorms}
                     keyExtractor={this._keyExtrractor}
                     renderItem={({ item }) => (
-                        <TouchableOpacity key={item.id} style={styles.card}>
+                        <TouchableOpacity key={item.id} style={styles.card} onPress={() => this.props.navigation.navigate('DetailView', { item:item})} dataItem={item}>
                             <Image source={{uri: item.image}} style={styles.image} />
                             <View style={styles.text}>
                                 <Text sytle={{ flexDirection: 'row', alignContent: 'space-between'}}>

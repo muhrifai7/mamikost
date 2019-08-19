@@ -5,9 +5,11 @@ import { createStackNavigator } from 'react-navigation'
 
 
 import ListViewNav from './listView'
+import DetailView from './detailView'
 import Promo from '../components/promo'
 import Place from '../components/place'
 import CityDetail from '../screens/cityDetail'
+import ListDorm from '../screens/listDorm'
 
 class Explore extends Component {
     
@@ -80,6 +82,8 @@ const ExploreNavigator = createStackNavigator(
         {
             Explore: Explore,
             ListView: ListViewNav,
+            ListDorm:ListDorm,
+            DetailView: DetailView,
             CityDetail: CityDetail
         },
         {

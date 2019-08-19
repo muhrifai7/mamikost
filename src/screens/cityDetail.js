@@ -69,7 +69,7 @@ export default class CityDetail extends Component {
         }
     )
 
-    _keyExtrractor = (item, index) => item.id;
+    _keyExtractor = (item, index) => item.id;
 
     render () {
         const { search } = this.state
@@ -87,7 +87,7 @@ export default class CityDetail extends Component {
                 <FlatList 
                     style={{ marginBottom: 90}}
                     data={dorms}
-                    keyExtractor={this._keyExtrractor}
+                    keyExtractor={this._keyExtractor}
                     renderItem={({ item }) => (
                         <View key={item.id} style={styles.card}>
                             <Image source={{uri: item.image}} style={styles.image} />
@@ -95,7 +95,6 @@ export default class CityDetail extends Component {
                                 <Text sytle={{ flexDirection: 'row', alignContent: 'space-between'}}>
                                     <Text style={{color: 'red'}}>{item.type}  </Text> 
                                     <Text style={{color: 'green'}}> Tersisa {item.room} kamar  </Text>
-                                    <Text> {item.city}</Text>
                                 </Text>
                                 <Text style={{ fontWeight: 'bold'}}>
                                     Rp {item.cost}/bln

@@ -21,35 +21,42 @@ import ListDorm from './listDorm'
 
 
 class ListView extends Component {
-
-    static navigationOptions = ({ navigation }) => (
+     static navigationOptions = ({ navigation }) => (
         {
+            title: 'Login',
+            headerTitleStyle: {
+                color: 'green'
+            },
             headerStyle: {
                 elevation: 0
-            },
-            header: (
-                <Container>
-                    <Header searchBar rounded style={styles.header}>
-                        <Left style={styles.left}>
-                            <Button style={styles.backButton} onPress={() => {navigation.goBack()}}>
-                                <Text>
-                                    <Icon name="arrow-back" style={styles.backArrow} />
-                                </Text>
-                            </Button>
-                        </Left>
-                        <Item style={styles.item}>
-                            <Icon name="ios-search" style={styles.icon}/>
-                            <Input placeholder="Cari tempat.." />
-                        </Item>
-                        <Button transparent>
-                            <Text>Search</Text>
-                        </Button>
-                    </Header>
-                </Container>
-            ),
-            
+            }
         }
     )
+
+    // static navigationOptions = ({ navigation }) => (
+    //     {       header: (
+    //             <Container>
+    //                 <Header searchBar rounded style={styles.header}>
+    //                     <Left style={styles.left}>
+    //                         <Button style={styles.backButton} onPress={() => {navigation.goBack()}}>
+    //                             <Text>
+    //                                 <Icon name="arrow-back" style={styles.backArrow} />
+    //                             </Text>
+    //                         </Button>
+    //                     </Left>
+    //                     <Item style={styles.item}>
+    //                         <Icon name="ios-search" style={styles.icon}/>
+    //                         <Input placeholder="Cari tempat.." />
+    //                     </Item>
+    //                     <Button transparent>
+    //                         <Text>Search</Text>
+    //                     </Button>
+    //                 </Header>
+    //             </Container>
+    //         ),
+            
+    //     }
+    // )
 
     render() {
         return (

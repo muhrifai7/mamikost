@@ -3,7 +3,6 @@ import { Button, StyleSheet, ScrollView, View, Text, TouchableHighlight, Touchab
 import { Icon } from 'native-base'
 import { createStackNavigator } from 'react-navigation'
 
-
 import ListViewNav from './listView'
 import DetailView from './detailView'
 import Promo from '../components/promo'
@@ -15,6 +14,7 @@ import Booking from './booking'
 import Booklist from './booklist'
 import KotaPopuler from '../components/KotaPopuler'
 import NavbarButton from '../components/NavbarButton'
+import Maps from '../components/Maps'
 
 class Explore extends Component {
     
@@ -43,7 +43,7 @@ class Explore extends Component {
     render() {
         return (
             <View style={{flex: 1, backgroundColor: '#white'}}>
-            
+
             <NavbarButton />
                 <ScrollView>
                     <Promo />

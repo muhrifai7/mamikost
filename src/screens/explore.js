@@ -13,11 +13,12 @@ import ListDorm from '../screens/listDorm'
 import FilterPage from './filterPage'
 import Booking from './booking'
 import Booklist from './booklist'
+import KotaPopuler from '../components/KotaPopuler'
 
 class Explore extends Component {
     
     static navigationOptions= ({ navigation }) => (
-        {
+        {   title: 'Search City',
             headerStyle: {
                 elevation: 0,
             },
@@ -72,7 +73,7 @@ class Explore extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <Place action={() => this.props.navigation.navigate('CityDetail')}/>
+                    <KotaPopuler action={() => this.props.navigation.navigate('ListView')}/>
                 </ScrollView>
             </View>
         )

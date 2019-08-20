@@ -14,6 +14,7 @@ import FilterPage from './filterPage'
 import Booking from './booking'
 import Booklist from './booklist'
 import KotaPopuler from '../components/KotaPopuler'
+import NavbarButton from '../components/NavbarButton'
 
 class Explore extends Component {
     
@@ -36,14 +37,14 @@ class Explore extends Component {
                     <Icon name='search' size={28} style={{color: 'green', marginRight: 14}}/>
                 </TouchableOpacity>
             )
-        } 
-        
+        }  
         )
     
     render() {
         return (
             <View style={{flex: 1, backgroundColor: '#white'}}>
-                <View style={styles.servicesWrapper}>
+            <NavbarButton />
+                {/* <View style={styles.servicesWrapper}>
                     <TouchableOpacity style={styles.services}>
                         <Icon name='bed' style={styles.iconGreen}/>
                         <Text style={styles.iconGreen}>Kostan</Text>
@@ -60,7 +61,7 @@ class Explore extends Component {
                         <Icon name='briefcase' style={styles.iconGreen}/>
                         <Text style={styles.iconGreen}>Kerja</Text>
                     </TouchableOpacity>
-                </View>
+                </View> */}
                 <ScrollView>
                     <Promo />
                     <View style={styles.adsBorder}>

@@ -1,44 +1,82 @@
-import React, { Component } from 'react';
-import { View, Image, ScrollView, TouchableHighlight, TouchableOpacity } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
+import React, { Component } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  SafeAreaView,
+  FlatList
+} from "react-native";
+import Slideshow from 'react-native-image-slider-show';
 
-const promos = [
-    {
-        imageUrl: 'https://static.mamikos.com/uploads/cache/data/user/2019-02-06/tYYKBgjd-360x480.jpg'
-    },
-    {
-        imageUrl: 'https://static.mamikos.com/uploads/cache/data/user/2019-05-10/A82cx34O-360x480.jpg'
-    },
-    {
-        imageUrl: 'https://static.mamikos.com/uploads/cache/data/user/2019-08-02/T71F3KDd-360x480.jpg'
+class Slide extends Component {
+    constructor() {
+        super();
+        this.state = {
+            position: 1,
+            interval: null,
+            dataSource: [
+                {
+                // title: 'Title 1',
+                // caption: 'Caption 1',
+                url: 'https://static.mamikos.com/uploads/cache/data/user/2019-02-06/tYYKBgjd-360x480.jpg',
+                }, {
+                url: 'https://static.mamikos.com/uploads/cache/data/user/2019-05-10/A82cx34O-360x480.jpg',
+                }, {
+                url: 'https://static.mamikos.com/uploads/cache/data/user/2019-08-02/T71F3KDd-360x480.jpg',
+                },
+            ],
+        };
     }
-]
+    componentWillMount() {
+        this.setState({
+          interval: setInterval(() => {
+            this.setState({
+              position: this.state.position === this.state.dataSource.length ? 0 : this.state.position + 1
+            });
+          }, 3000)
+        });
+      }
+      componentWillUnmount() {
+        clearInterval(this.state.interval);
+      }
 
-export default class Promo extends Component {
-
-    render() {
-        return (
-            <View>
-                <View style={{ paddingLeft: 20, paddingTop: 20, paddingBottom: 2}}>
-                    <Text>Promo</Text>
-                </View>
-                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true}>
-                    {promos.map((link, index) => {
-                        return (
-                            <Card key={index} style={{flex: 1, height: 200, width: 400, marginHorizontal: 10}} transparent >
-                                <CardItem style={{flexDirection: 'column'}}>
-                                    <TouchableHighlight>
-                                        <Image 
-                                            source={{uri: link.imageUrl}} 
-                                            style={{ flex: 1, aspectRatio: 2.5, resizeMode: 'contain'}}
-                                        />
-                                    </TouchableHighlight>
-                                </CardItem>
-                            </Card>
-                        )
-                    })}
-                </ScrollView>
+    render() { 
+        return (  <View style={[styles.itemBaris]}>
+            <Text style={{ color: '#474747', fontWeight: 'bold', paddingVertical: 20, fontSize: 19,paddingLeft:20 }}>Promo</Text>
+            <View style={{ padding: 0, borderRadius: 5 }}>
+              <Slideshow
+                height={145}
+                overlay={false}
+                arrowSize={2}
+                dataSource={this.state.dataSource}
+                position={this.state.position}
+                onPositionChanged=
+                {position => this.setState({ position })}
+                containerStyle={{ resideMode: 'center' }}
+              />
             </View>
-        )
+          </View> );
     }
 }
+ 
+export default Slide;
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      flexDirection: 'column',
+      padding: 5,
+      backgroundColor: '#f0f0f0'
+    },
+    cardContainer: {
+      marginVertical: 5
+    },
+    itemBaris: {
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        paddingVertical: 5
+      }
+})

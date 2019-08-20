@@ -16,7 +16,7 @@ import { Container,
 import { SearchBar } from 'react-native-elements'
 import { withNavigation, createMaterialTopTabNavigator } from 'react-navigation'
 
-import MapViewer from './mapView'
+import Maps from '../components/Maps'
 import ListDorm from './listDorm'
 
 
@@ -62,8 +62,8 @@ class ListView extends Component {
 
 const ListViewNav = createMaterialTopTabNavigator(
     {
-        MapViewer: {
-            screen: MapViewer,
+        Maps: {
+            screen: Maps,
             navigationOptions: {
                 title: 'Lihat Peta'
             }

@@ -43,25 +43,8 @@ class Explore extends Component {
     render() {
         return (
             <View style={{flex: 1, backgroundColor: '#white'}}>
+            
             <NavbarButton />
-                {/* <View style={styles.servicesWrapper}>
-                    <TouchableOpacity style={styles.services}>
-                        <Icon name='bed' style={styles.iconGreen}/>
-                        <Text style={styles.iconGreen}>Kostan</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.services}>
-                        <Icon name='business' style={styles.iconGreen}/>
-                        <Text style={styles.iconGreen}>Hotel</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.services}>
-                        <Icon name='basket' style={styles.iconGreen}/>
-                        <Text style={styles.iconGreen}>Toko</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.services}>
-                        <Icon name='briefcase' style={styles.iconGreen}/>
-                        <Text style={styles.iconGreen}>Kerja</Text>
-                    </TouchableOpacity>
-                </View> */}
                 <ScrollView>
                     <Promo />
                     <View style={styles.adsBorder}>

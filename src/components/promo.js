@@ -45,7 +45,7 @@ class Slide extends Component {
 
     render() { 
         return (  <View style={[styles.itemBaris]}>
-            <Text style={{ color: '#474747', fontWeight: 'bold', paddingVertical: 20, fontSize: 19,paddingLeft:20 }}>Promo</Text>
+            <Text style={styles.text}>Promo</Text>
             <View style={{ padding: 0, borderRadius: 5 }}>
               <Slideshow
                 height={145}
@@ -55,7 +55,7 @@ class Slide extends Component {
                 position={this.state.position}
                 onPositionChanged=
                 {position => this.setState({ position })}
-                containerStyle={{ resideMode: 'center' }}
+                containerStyle={{ resideMode: 'cover' }}
               />
             </View>
           </View> );
@@ -78,5 +78,12 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         flexWrap: 'wrap',
         paddingVertical: 5
-      }
+    },
+    text :{
+      color: '#474747', 
+      fontWeight: 'bold',
+       paddingVertical: 20, 
+       fontSize: 19,
+       paddingLeft:20
+    }
 })

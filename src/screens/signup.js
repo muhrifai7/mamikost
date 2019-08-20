@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Container,  Header, Left, Body, Right, Title } from 'native-base';
 import { TextInput, StyleSheet, View, Button, Text, Image, TouchableOpacity } from 'react-native'
 import { createStackNavigator } from 'react-navigation'
+import MakeButton from '../components/button'
+import Profile from './profile'
 
 
 export default class Signup extends Component {
@@ -26,13 +28,13 @@ export default class Signup extends Component {
                 <View style={{ justifyContent: 'center'}}>
                     <TextInput style={styles.textInput} placeholder='Email address'/>
                     <TextInput style={styles.textInput} placeholder='Username' />
-                    <TextInput style={styles.textInput} placeholder='Password' />
-                    <TextInput style={styles.textInput} placeholder='Repeat Password' />
+                    <TextInput secureTextEntry={true}
+                    style={styles.textInput} placeholder='Password' />
+                    <TextInput secureTextEntry={true}
+                    style={styles.textInput} placeholder='Repeat Password' />
                 </View>
                 <View style={{ justifyContent: 'center'}}>
-                    <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Profile')}>
-                        <Text style={styles.text}>Sign Up</Text>
-                    </TouchableOpacity>
+                <MakeButton title='Signup' action={()=> {this.props.navigation.navigate('Profile')}}/>
                 </View>
             </View>
         );

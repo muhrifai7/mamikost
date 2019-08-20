@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, ScrollView, StyleSheet, TouchableOpacity, Text, TextInput, Button } from 'react-native';
 import ImagePicker from 'react-native-image-picker'
 import { SearchBar } from 'react-native-elements'
+import Maps from '../components/Maps'
 
 export default class FormAds extends Component {
 
@@ -69,7 +70,9 @@ export default class FormAds extends Component {
                                 value={this.state.search}
                             />  
                             
-                            <Text style={styles.map}></Text>
+                            <View style={styles.map}>
+                                <Maps />
+                            </View>
 
                             <Text style={styles.text}>Foto Iklan *</Text>
                             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -106,13 +109,6 @@ export default class FormAds extends Component {
 
         )
     }
-
-    // updateSearch = (event) => {
-    //     this.setState({
-    //         search: event.target.value
-    //     })
-    // }
-
     backToProfile = () => {
         this.props.navigation.navigate('Profile');
     }

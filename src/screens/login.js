@@ -8,6 +8,7 @@ import Profile from './profile'
 import ListAds from './listAds'
 import FormAds from './formAds'
 import Booklist from './booklist'
+import MakeButton from '../components/button'
 
 
 class Login extends Component {
@@ -31,12 +32,12 @@ class Login extends Component {
                 </View>
                 <View style={{ justifyContent: 'center'}}>
                     <TextInput style={styles.textInput} placeholder='Username'/>
-                    <TextInput style={styles.textInput} placeholder='Password' />
+                    <TextInput secureTextEntry={true}
+                    style={styles.textInput} placeholder='Password' />
                 </View>
                 <View style={{ justifyContent: 'center'}}>
-                    <TouchableOpacity style={styles.buttonLogin} onPress={() => this.props.navigation.navigate('Profile')}>
-                        <Text style={styles.text}>Login</Text>
-                    </TouchableOpacity>
+                <MakeButton title='SignIn' action={()=> this.props.navigation.navigate('Profile')}/>
+                
                     <TouchableOpacity style={styles.buttonRegister} onPress={() => this.props.navigation.navigate('Signup')}>
                         <Text style={styles.text}>Sign Up</Text>
                     </TouchableOpacity>

@@ -55,8 +55,7 @@ export default class Filter extends Component {
         return (
             <View>
                 <ScrollView style={{ marginHorizontal: 10, marginVertical: 10, padding: 40}}>
-                    <Text style={styles.title}>Tipe Kost (Gender)</Text>
-                    {/* Picker untuk tipe kost */}
+                    <Text style={styles.title}>Tipe Kost</Text>
                     <View style={styles.container}>
                         <Picker style={styles.pickerStyle}
                             selectedValue={this.state.language}
@@ -70,7 +69,6 @@ export default class Filter extends Component {
                     </View>
 
                     <Text style={styles.title}>Jangka Waktu</Text>
-                    {/* Picker untuk waktu */}
                     <View style={styles.container}>
                         <Picker style={styles.pickerStyle}
                             selectedValue={this.state.language}
@@ -90,9 +88,8 @@ export default class Filter extends Component {
                         <Text style={{ paddingTop: 15, color: 'grey' }}>--  </Text>
                         <TextInput underlineColorAndroid='black' style={{ width: 160, fontSize: 12 }} placeholder='Maks. Anggaran' />
                     </View>
-                    <Text style={styles.title}>Fasilitas</Text>
                     <View style={{ marginBottom: 190, marginRight: 200 }}>
-                        <RadioGroup style={{color: 'green'}} radioButtons={this.state.facilities} onPress={this.onPress} />
+                        {/* <RadioGroup style={{color: 'green'}} radioButtons={this.state.facilities} onPress={this.onPress} /> */}
                     </View>
                 </ScrollView>
                 <View style={{ flexDirection: 'row', bottom: 0, borderTopWidth: 1, position: 'absolute', borderColor: '#b2bec3', justifyContent: 'center', width: 400, marginBottom:1}}>

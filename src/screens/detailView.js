@@ -3,7 +3,9 @@ import { Rating, AirbnbRating } from 'react-native-elements'
 import { View, Image, ScrollView, TouchableHighlight, TouchableOpacity } from 'react-native'
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Item } from 'native-base'
 
+
 import Booking from './booking'
+
 
 const icons = [
     {

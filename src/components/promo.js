@@ -48,14 +48,14 @@ class Slide extends Component {
             <Text style={styles.text}>Promo</Text>
             <View style={{ padding: 0, borderRadius: 5 }}>
               <Slideshow
-                height={145}
+                height={155}
                 overlay={false}
                 arrowSize={2}
                 dataSource={this.state.dataSource}
                 position={this.state.position}
                 onPositionChanged=
                 {position => this.setState({ position })}
-                containerStyle={{ resideMode: 'cover' }}
+                containerStyle={{ resizeMode: 'cover'}}
               />
             </View>
           </View> );

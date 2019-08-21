@@ -34,7 +34,7 @@ export default class Signup extends Component {
                     style={styles.textInput} placeholder='Repeat Password' />
                 </View>
                 <View style={{ justifyContent: 'center'}}>
-                <MakeButton title='Signup' action={()=> {this.props.navigation.navigate('Profile')}}/>
+                <MakeButton title='Daftar' action={()=> {this.props.navigation.navigate('Profile')}}/>
                 </View>
             </View>
         );

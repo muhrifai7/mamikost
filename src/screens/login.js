@@ -36,7 +36,7 @@ class Login extends Component {
                     style={styles.textInput} placeholder='Password' />
                 </View>
                 <View style={{ justifyContent: 'center'}}>
-                <MakeButton title='SignIn' action={()=> this.props.navigation.navigate('Profile')}/>
+                <MakeButton title='Sign In' action={()=> this.props.navigation.navigate('Profile')}/>
                 
                     <TouchableOpacity style={styles.buttonRegister} onPress={() => this.props.navigation.navigate('Signup')}>
                         <Text style={styles.text}>Sign Up</Text>

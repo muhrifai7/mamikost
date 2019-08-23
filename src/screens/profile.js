@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, TouchableOpacity, Text, Image, View, ScrollView} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import AsyncStorage from '@react-native-community/async-storage'
 
 import ListAds from './listAds'
 import Booklist from './booklist'
@@ -17,6 +18,13 @@ export default class Profile extends Component {
             },
         }
     )
+    _logoutAsync = async () => {
+        try {
+            alert('ok')
+          await AsyncStorage.clear()
+          this.props.navigation.navigate('Login')
+        } catch(e) {}
+      };
 
     render(){
         return(
@@ -52,10 +60,12 @@ export default class Profile extends Component {
                         <Icon name="ios-settings" size={30} color='#00a663'/>
                         <Text style={styles.Text}>Pengaturan</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.card} >
+                    <TouchableOpacity onPress={()=> this._logoutAsync()}
+                    style={styles.card} >
                         <Icon name='ios-call' size={30} color='#00a663' />
-                        <Text style={styles.Text}>Hubungi CS</Text>
+                            <Text style={styles.text}>Logout</Text>
                     </TouchableOpacity>
+                   
             </ScrollView>
         )
     }

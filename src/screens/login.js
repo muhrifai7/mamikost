@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Container,  Header, Left, Body, Right, Title } from 'native-base';
 import { TextInput, StyleSheet, View, Button, Text, Image, TouchableOpacity } from 'react-native'
 import { createStackNavigator } from 'react-navigation'
+import axios from 'axios';
+import AsyncStorage from '@react-native-community/async-storage'
+
 
 import Signup from './signup'
 import Profile from './profile'
@@ -12,6 +15,16 @@ import MakeButton from '../components/button'
 
 
 class Login extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          email: '',
+          password: '',
+          userToken: ''
+        //   data:''
+        }
+      
+    }
     static navigationOptions = ({ navigation }) => (
         {
             title: 'Login',
@@ -23,7 +36,28 @@ class Login extends Component {
             }
         }
     )
-
+ 
+    _Login = async () => {
+       
+        
+           await axios.post('http://192.168.0.27:5000/api/v1/login',{
+                email: this.state.email,
+                password: this.state.password
+            })
+                .then(res => {
+                    console.log(res)
+                if(typeof res.data.token !== undefined ) {
+                  AsyncStorage.setItem('userToken', res.data.token);
+                    this.props.navigation.navigate('Explore')
+                }else {
+                    alert('Login Gagal')
+                }
+            })
+            .catch(error => {
+                alert(error);
+            });
+        }
+    
     render() {
         return (
             <View>
@@ -31,16 +65,24 @@ class Login extends Component {
                     <Image style={styles.imgResize} source={require('../assets/img/undraw_synchronize_ccxk.png')}/>
                 </View>
                 <View style={{ justifyContent: 'center'}}>
-                    <TextInput style={styles.textInput} placeholder='Username'/>
+                    <TextInput style={styles.textInput} placeholder='Email'
+                        onChangeText={(email)=> this.setState({email})}
+                    />
                     <TextInput secureTextEntry={true}
-                    style={styles.textInput} placeholder='Password' />
+                    style={styles.textInput} placeholder='Password' 
+                    onChangeText={(password)=> this.setState({password})}
+                    />
                 </View>
                 <View style={{ justifyContent: 'center'}}>
-                <MakeButton title='Sign In' action={()=> this.props.navigation.navigate('Profile')}/>
-                
+                <TouchableOpacity style={styles.button} onPress={() => this._Login()}>
+                        <Text style={styles.text}>Login</Text>
+                    </TouchableOpacity>
+                {/* action={()=> this.props.navigation.navigate('Profile')} */}
                     <TouchableOpacity style={styles.buttonRegister} onPress={() => this.props.navigation.navigate('Signup')}>
                         <Text style={styles.text}>Sign Up</Text>
                     </TouchableOpacity>
+
+                   
                 </View>
             </View>
         );
@@ -125,5 +167,16 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: 'white',
         alignSelf: 'center'
+    },
+    button: {
+        alignItems: 'center',
+        alignSelf: 'center',
+        backgroundColor: 'green',
+        padding: 20,
+        paddingTop: 15,
+        width: 300,
+        borderRadius: 25,
+        elevation: 7,
+        height: 20,
     }
 })

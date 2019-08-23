@@ -20,10 +20,13 @@ export default class Profile extends Component {
     )
     _logoutAsync = async () => {
         try {
-            alert('ok')
-          await AsyncStorage.clear()
+           
+          await AsyncStorage.clear() 
+          alert('Logout berhasil')
           this.props.navigation.navigate('Login')
-        } catch(e) {}
+        } catch(e) {
+            alert(e)
+        }
       };
 
     render(){

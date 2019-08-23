@@ -39,14 +39,22 @@ export default class Signup extends Component {
           let tempUser = {
             username: this.state.username,
             password: this.state.password,
-            email: this.state.name,
+            email: this.state.email,
             telp: this.state.telp,
             job: this.state.job
           }
+         
           await axios.post("http://192.168.0.27:5000/api/v1/user/register", tempUser)
             .then((response) => {
-                alert('databerhasildtambahkan')
-              this.props.navigation.navigate('Login')
+                console.log(response)
+                if ( typeof response.data.status !== null ) {
+                    alert(' Data Berhasil ditambahkan')
+                    this.props.navigation.navigate('Login')
+                }else {
+                     alert(response.data.error)
+                     this.props.navigation.navigate('Signup')
+            
+                }   
             })
             .catch((error) => {
               alert(error)

@@ -8,7 +8,7 @@ import Login from './src/screens/login'
 // import RegistrationNavigator from './src/screens/login';
 import HomeNavigator from './src/screens/homeNavigator'
 
-const AppNavigator = createSwitchNavigator(
+const AppNavigator = createStackNavigator(
   {
     Login: Login,
     HomeNavigator: HomeNavigator,

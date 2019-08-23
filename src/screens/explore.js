@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, StyleSheet, ScrollView, View, Text, TouchableHighlight, TouchableOpacity } from 'react-native'
 import { Icon } from 'native-base'
-import { createStackNavigator } from 'react-navigation'
+import { createStackNavigator,createNavigator, createSwitchNavigator } from 'react-navigation'
 
 import ListViewNav from './listView'
 import DetailView from './detailView'
@@ -52,7 +52,7 @@ class Explore extends Component {
                             <Text style={{marginLeft: 20, fontSize: 24, color: 'green'}}>Ingin pasang iklan?</Text>
                         </View>
                         <View style={{flex: 1, alignSelf: 'center'}}>
-                            <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Login')}>
+                            <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('ListAds')}>
                                 <Text style={styles.text}>Pasang</Text>
                             </TouchableOpacity>
                         </View>

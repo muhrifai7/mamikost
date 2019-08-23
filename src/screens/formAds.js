@@ -46,6 +46,10 @@ export default class FormAds extends Component {
     handleSearch = (search) => {
         this.setState({search})
     }
+    _formAds = ()=> {
+        alert('ok')
+    }
+
 
     render() {
         const { photo } = this.state
@@ -102,9 +106,12 @@ export default class FormAds extends Component {
                             <TextInput placeholder='Masukkan nomor telepon pengelola kost' underlineColorAndroid='#00b894' ></TextInput>
 
                         </View>
+
                     </View>
+                        <Button onPress={()=> {this._formAds()}}
+                        title="Submit" style={{height:50}}/>
                 </ScrollView>
-                <Button title="Submit" />
+               
             </View>
 
         )

@@ -35,6 +35,8 @@ target 'mamiclone' do
 
   pod 'RNShare', :path => '../node_modules/react-native-share'
 
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
   target 'mamicloneTests' do
     inherit! :search_paths
     # Pods for testing

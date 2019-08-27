@@ -18,12 +18,12 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          email: '',
-          password: '',
-          userToken: ''
+        email: '',
+        password: '',
+        userToken: ''
         //   data:''
         }
-      
+    
     }
     static navigationOptions = ({ navigation }) => (
         {
@@ -36,18 +36,18 @@ class Login extends Component {
             }
         }
     )
- 
+
     _Login = async () => {
-       
         
-           axios.post('http://192.168.0.27:5000/api/v1/login',{
-              email: this.state.email,
-              password: this.state.password
+        
+            axios.post('http://mamiclone-api.herokuapp.com/api/v1/login',{
+                email: this.state.email,
+                password: this.state.password
             })
                 .then(res => {
                     console.log(res)
                 if(typeof res.data.token !== undefined && res.data.error !== true) {
-                  AsyncStorage.setItem('userToken', res.data.token);
+                    AsyncStorage.setItem('userToken', res.data.token);
                     this.props.navigation.navigate('HomeNavigator')
                 }else {
                     alert('Login Gagal')
@@ -82,7 +82,7 @@ class Login extends Component {
                         <Text style={styles.text}>Sign Up</Text>
                     </TouchableOpacity>
 
-                   
+                
                 </View>
             </View>
         );

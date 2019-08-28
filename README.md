@@ -1,4 +1,4 @@
-#Mamiclone Project
+# Mamiclone Project
 
 ## Important
 This project is still on very early development stage. If you want to use for production, use it with your own risk. Back-end repo in [here](https://github.com/eryzerz/mamiclone-api)

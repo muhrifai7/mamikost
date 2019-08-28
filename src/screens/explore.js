@@ -15,6 +15,8 @@ import Booklist from './booklist'
 import KotaPopuler from '../components/KotaPopuler'
 import NavbarButton from '../components/NavbarButton'
 import Maps from '../components/Maps'
+import ListAd from './listAds'
+import FormAd from './formAds'
 
 class Explore extends Component {
     
@@ -52,7 +54,7 @@ class Explore extends Component {
                             <Text style={{marginLeft: 20, fontSize: 24, color: 'green'}}>Ingin pasang iklan?</Text>
                         </View>
                         <View style={{flex: 1, alignSelf: 'center'}}>
-                            <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('ListAds')}>
+                            <TouchableOpacity style={styles.button} onPress={() =>this.props.navigation.navigate('ListAd')}>
                                 <Text style={styles.text}>Pasang</Text>
                             </TouchableOpacity>
                         </View>
@@ -75,7 +77,9 @@ const ExploreNavigator = createStackNavigator(
             CityDetail: CityDetail,
             FilterPage: FilterPage,
             Booking: Booking,
-            Booklist:Booklist
+            Booklist:Booklist,
+            ListAd : ListAd,
+            FormAd : FormAd
         },
         {
             initialRouteName: 'Explore',

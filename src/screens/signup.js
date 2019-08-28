@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container,  Header, Left, Body, Right, Title } from 'native-base';
-import { TextInput, StyleSheet, View, Button, Text, Image, TouchableOpacity } from 'react-native'
+import { TextInput, StyleSheet, View, Button, Text, Image, TouchableOpacity,KeyboardAvoidingView } from 'react-native'
 import { createStackNavigator } from 'react-navigation'
 import axios from 'axios';
 import { AsyncStorage } from 'react-native';
@@ -67,7 +67,10 @@ export default class Signup extends Component {
 
     render() {
         return (
-            <View>
+            <KeyboardAvoidingView
+            style={{flex:1}}
+            behavior="padding">
+            
                 <View style={{ justifyContent: 'center'}}>
                     <Image style={styles.imgResize} source={require('../assets/img/undraw_Hello_qnas.png')}/>
                 </View>
@@ -92,7 +95,7 @@ export default class Signup extends Component {
                         <Text style={styles.text}>Submit</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         );
     }
 }

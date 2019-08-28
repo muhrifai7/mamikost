@@ -4,6 +4,7 @@ import { SearchBar } from 'react-native-elements'
 import { withNavigation, createMaterialTopTabNavigator } from 'react-navigation'
 
 
+
 const ads = [
     {
         id: '0',
@@ -39,7 +40,7 @@ const ads = [
 
 export default class ListAds extends Component {
 
-
+    
     constructor(props) {
         super(props)
         this.state = {
@@ -99,7 +100,7 @@ export default class ListAds extends Component {
                 <View style={{ alignItems: 'center'}}>
                     <TouchableOpacity 
                         style={styles.button}
-                        onPress= {() => this.props.navigation.navigate('FormAds')}
+                        onPress= {() => this.props.navigation.navigate('FormAd')}
                     >
                         <Text style={{alignSelf: 'center', color: 'white', fontSize: 20}}>Pasang Iklan</Text>
                     </TouchableOpacity>

@@ -3,7 +3,7 @@ import { StyleSheet, TouchableOpacity, Text, Image, View, ScrollView} from 'reac
 import Icon from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-community/async-storage'
 
-import ListAds from './listAds'
+import ListAd from './listAds'
 import Booklist from './booklist'
 
 export default class Profile extends Component { 
@@ -51,7 +51,7 @@ export default class Profile extends Component {
                         <Icon name="ios-paper" size={30} color='#00a663' />
                         <Text style={styles.Text}>Daftar Pemesanan</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.card} onPress={() => this.props.navigation.navigate('ListAds')}>
+                    <TouchableOpacity style={styles.card} onPress={() => this.props.navigation.navigate('ListAd')}>
                         <Icon name="ios-images" size={30} color='#00a663' />
                         <Text style={styles.Text}>Data dan Pasang Iklan</Text>
                     </TouchableOpacity>

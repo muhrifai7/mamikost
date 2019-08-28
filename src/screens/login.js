@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container,  Header, Left, Body, Right, Title } from 'native-base';
-import { TextInput, StyleSheet, View, Button, Text, Image, TouchableOpacity } from 'react-native'
+import { TextInput, StyleSheet, View, Button, Text, Image, TouchableOpacity,KeyboardAvoidingView } from 'react-native'
 import { createStackNavigator } from 'react-navigation'
 import axios from 'axios';
 import AsyncStorage from '@react-native-community/async-storage'
@@ -11,7 +11,6 @@ import Profile from './profile'
 import ListAds from './listAds'
 import FormAds from './formAds'
 import Booklist from './booklist'
-import MakeButton from '../components/button'
 
 
 class Login extends Component {
@@ -21,8 +20,9 @@ class Login extends Component {
           email: '',
           password: '',
           userToken: ''
-        //   data:''
+
         }
+       this._cekLogin();
       
     }
     static navigationOptions = ({ navigation }) => (
@@ -36,18 +36,29 @@ class Login extends Component {
             }
         }
     )
- 
-    _Login = async () => {
-       
+
+    _cekLogin = async () => {
         
-           axios.post('http://192.168.0.27:5000/api/v1/login',{
+          const value = await AsyncStorage.getItem('userToken');
+          if (value) {
+            // We have data!!
+            this.props.navigation.navigate('HomeNavigator')
+          }else {
+            this.props.navigation.navigate('Login')
+          }
+      };
+
+    _Login = async () => {
+           axios.post('https://mamiclone-api.herokuapp.com/api/v1/login',{
               email: this.state.email,
               password: this.state.password
             })
                 .then(res => {
                     console.log(res)
                 if(typeof res.data.token !== undefined && res.data.error !== true) {
-                  AsyncStorage.setItem('userToken', res.data.token);
+
+                AsyncStorage.setItem('userToken', res.data.token);
+               
                     this.props.navigation.navigate('HomeNavigator')
                 }else {
                     alert('Login Gagal')
@@ -55,12 +66,17 @@ class Login extends Component {
             })
             .catch(error => {
                 alert(error);
+
             });
         }
     
     render() {
         return (
-            <View>
+            <KeyboardAvoidingView
+            style={styles.container}
+            behavior="padding"
+            >
+            <Text>{this.state.username}</Text>
                 <View style={{ justifyContent: 'center'}}>
                     <Image style={styles.imgResize} source={require('../assets/img/undraw_synchronize_ccxk.png')}/>
                 </View>
@@ -84,7 +100,8 @@ class Login extends Component {
 
                    
                 </View>
-            </View>
+            
+            </KeyboardAvoidingView>
         );
     }
 }

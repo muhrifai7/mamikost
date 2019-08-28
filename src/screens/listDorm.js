@@ -3,60 +3,40 @@ import Icon from 'native-base'
 import { TouchableWithoutFeedback, Button, Image, TextInput, FlatList, StyleSheet, ScrollView, View, Text, TouchableHighlight, TouchableOpacity } from 'react-native'
 import { SearchBar } from 'react-native-elements'
 import { withNavigation, createMaterialTopTabNavigator } from 'react-navigation'
+import axios from 'axios'
+import { connect } from 'react-redux'
+import { Provider } from 'react-redux'
 
 import FilterPage from './filterPage'
 import DetailView from './detailView'
+import Host from '../env/env'
+import {getDorms} from '../store/actions'
+import dorms from '../store/reducers'
 
 
-const dorms = [
-    {
-        id: '0',
-        type: 'Campur',
-        city: 'Medan',
-        room: 3,
-        cost: 1600000,
-        name: "Kost D'eiffel Medan Petisah",
-        latestUpdate: '12 juni 2019',
-        image: 'https://static.mamikos.com/uploads/cache/data/style/2019-07-03/ZIihOxY2-540x720.jpg'
-    },
-    {
-        id: '1',
-        type: 'Putri',
-        city: 'Medan',
-        room: 5,
-        cost: 1000000,
-        latestUpdate: '1 Juli 2019',
-        name: "Kost Seikera Gg Rezeki Medan Perjuangan",
-        image: 'https://static.mamikos.com/uploads/cache/data/style/2018-12-14/YzhzNQsY-540x720.jpg'
-    },
-    {
-        id: '2',   
-        type: 'Putra',
-        city: 'Jakarta Selatan',
-        room: 2,
-        cost: 2500000,
-        latestUpdate: '4 Agustus 2019',
-        name: "Kost Mampang Ceria",
-        image: 'https://static.mamikos.com/uploads/cache/data/style/2019-08-09/HpPoK7Yf-540x720.jpg'
-    },
-    {
-        id: '3',
-        type: 'Campur',
-        city: 'Bogor',
-        room: 2,
-        cost: 1000000,
-        latestUpdate: '19 Agustus 2019',
-        name: "Kost IPB",
-        image: 'https://static.mamikos.com/uploads/cache/data/style/2019-07-03/ZIihOxY2-540x720.jpg'
+
+class ListDorm extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            dorms: []
+        }
     }
-]
 
-
-export default class ListDorm extends Component {
+    componentDidMount() {
+        axios.get(`${Host.host}dorms`)
+            .then(res => {
+                const dorms = res.data
+                this.props.dispatch(getDorms(dorms))
+            })
+            .catch(err => alert(err))
+    }
 
     _keyExtrractor = ( item, index ) => item.id
 
     render() {
+        const dorms = this.props.dorms.data
         return (
             <View>
                 <FlatList 
@@ -64,7 +44,7 @@ export default class ListDorm extends Component {
                     keyExtractor={this._keyExtrractor}
                     renderItem={({ item }) => (
                         <TouchableOpacity key={item.id} style={styles.card} onPress={() => this.props.navigation.navigate('DetailView', { item:item})} dataItem={item}>
-                            <Image source={{uri: item.image}} style={styles.image} />
+                            <Image source={{uri: item.photoURL}} style={styles.image} />
                             <View style={styles.text}>
                                 <Text sytle={{ flexDirection: 'row', alignContent: 'space-between'}}>
                                     <Text style={{color: 'red'}}>{item.type}  </Text> 
@@ -106,6 +86,13 @@ export default class ListDorm extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        dorms: state.dorms
+    }
+}
+
+export default connect(mapStateToProps)(ListDorm)
 
 const styles = StyleSheet.create({
     searchBar: {

@@ -86,7 +86,7 @@ export default class DetailView extends Component {
                                 <CardItem style={{flexDirection: 'column'}}>
                                     <TouchableHighlight>
                                         <Image 
-                                            source={{uri: item.image}} 
+                                            source={{uri: item.photoURL}} 
                                             style={{ flex: 1, aspectRatio: 2.5}}
                                         />
                                     </TouchableHighlight>

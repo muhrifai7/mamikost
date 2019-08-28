@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { Container,  Header, Left, Body, Right, Title } from 'native-base';
-import { TextInput, StyleSheet, View, Button, Text, Image, TouchableOpacity,KeyboardAvoidingView } from 'react-native'
+import { TextInput, StyleSheet, View, Button, Text, Image, TouchableOpacity,ScrollView } from 'react-native'
 import { createStackNavigator } from 'react-navigation'
 import axios from 'axios';
 import { AsyncStorage } from 'react-native';
 
 import MakeButton from '../components/button'
 import Profile from './profile'
-
 
 export default class Signup extends Component {
     constructor() {
@@ -40,11 +39,10 @@ export default class Signup extends Component {
             username: this.state.username,
             password: this.state.password,
             email: this.state.email,
-            telp: this.state.telp,
-            job: this.state.job
+            phone: this.state.telp,
           }
          
-          await axios.post("http://192.168.0.27:5000/api/v1/user/register", tempUser)
+          await axios.post("http://192.168.0.27:5000/api/v1/signup", tempUser)
             .then((response) => {
                 console.log(response)
                 if ( typeof response.data.status !== null ) {
@@ -67,9 +65,7 @@ export default class Signup extends Component {
 
     render() {
         return (
-            <KeyboardAvoidingView
-            style={{flex:1}}
-            behavior="padding">
+            <ScrollView>
             
                 <View style={{ justifyContent: 'center'}}>
                     <Image style={styles.imgResize} source={require('../assets/img/undraw_Hello_qnas.png')}/>
@@ -78,12 +74,16 @@ export default class Signup extends Component {
                     <TextInput style={styles.textInput} placeholder='username'
                         onChangeText={(username)=> this.setState({username})}
                     />
-                    <TextInput style={styles.textInput} placeholder='password' 
+                    {/* <TextInput style={styles.textInput} placeholder='password harus terdiri dari angka dan huruf minimal 8 char' 
                         onChangeText={(password)=> this.setState({password})}
-                    />
+                    /> */}
                     <TextInput
-                    style={styles.textInput} placeholder='email' 
+                    style={styles.textInput} placeholder='email harus ada titik dan @ minimal 8 char' 
                     onChangeText={(email)=> this.setState({email})}
+                    />
+
+                    <TextInput style={styles.textInput} placeholder='password harus terdiri dari angka dan huruf minimal 8 char' 
+                        onChangeText={(password)=> this.setState({password})}
                     />
                     <TextInput
                     style={styles.textInput} placeholder='telp' 
@@ -95,7 +95,7 @@ export default class Signup extends Component {
                         <Text style={styles.text}>Submit</Text>
                     </TouchableOpacity>
                 </View>
-            </KeyboardAvoidingView>
+            </ScrollView>
         );
     }
 }

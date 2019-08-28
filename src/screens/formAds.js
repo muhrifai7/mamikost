@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, StyleSheet, TouchableOpacity, Text, TextInput, Button } from 'react-native';
+import { View, ScrollView, StyleSheet, TouchableOpacity, Text, TextInput, Button,Picker } from 'react-native';
 import ImagePicker from 'react-native-image-picker'
 import { SearchBar } from 'react-native-elements'
 import { RadioButton } from 'react-native-paper';
@@ -28,30 +28,30 @@ export default class FormAds extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            region: {
+            regions: {
                 latitude: -6.059989,
                 longitude: 106.7063,
                 latitudeDelta: 0.025,
                 longitudeDelta: 0.025,
             },
-            checked: 'first',
+            prov : [],
             search: '',
             photo: null,
-            type: "",
+            type: "Putri",
             city: "",
             village: "",
-            alamat: "",
+            region: "",
             province: "",
             name: "",
             price: "",
-            room: 3,
+            room: "",
             latitude: "",
             longitude: "",
             photoURL: "",
             area: "",
-            facility: "Wi-fi, AC",
-            description: '',
-        }
+            facility: "",
+        },
+        this._getProvince()
     }
 
     handleChoosePhoto = () => {
@@ -73,9 +73,8 @@ export default class FormAds extends Component {
     handleSearch = (search) => {
         this.setState({search})
     }
-    onRegionChange = (region) => {
-        this.setState({ region });
-
+    onRegionChange = (regions) => {
+        this.setState({ regions });
       }
 
       simpanData = async () => {
@@ -84,21 +83,21 @@ export default class FormAds extends Component {
           const userStrTemp = await AsyncStorage.getItem('userObj');
           const objUser = await JSON.parse(userStrTemp);
           let dataUser = {
-            type: "putra",
+            type: this.state.type,
             city: this.state.city,
-            village: "",
-            alamat: "Priok",
+            village: "test",
+            region: this.state.region,
             province: this.state.province,
             name: this.state.name,
-            cost: this.state.price,
-            room: 3,
-            latitude: this.state.latitude,
-            longitude: this.state.longitude,
-            photoURL: "",
-            area: "5 x 5 m",
-            facility: "Wi-fi, AC",
+            cost: parseInt(this.state.price),
+            room: parseInt(this.state.room),
+            latitude:this.state.regions.latitude.toString(),
+            longitude: this.state.regions.longitude.toString(),
+            photoURL: "https://static.mamikos.com/uploads/cache/data/style/2019-07-03/17SrQbtt-540x720.jpg",
+            area: this.state.area,
+            facility:this.state.facility
           }
-          console.log(dataUser)
+        //   console.log(dataUser)
 
           const configBarier = {
             headers: { Authorization: "bearer " + userTokenTemp }
@@ -113,40 +112,95 @@ export default class FormAds extends Component {
       _aksiTambah = () => {
         this.simpanData();
       }
-
+      _getProvince = async () => {
+        const responseData = await axios.get("http://dev.farizdotid.com/api/daerahindonesia/provinsi");
+        await this.setState({
+          prov: responseData.data.semuaprovinsi
+        })
+        console.log(this.state.prov);
+      }
 
     render() { 
         const { photo } = this.state
-        const { checked } = this.state;
-
+        
         return (
             <View>
                 <ScrollView>
                     <View>
                         <View style={styles.field}>
-                            <Text style={styles.text}>Nama Kost *</Text>
+                            <Text style={styles.text}>Nama Kost </Text>
                             <TextInput placeholder='Masukan nama kost' underlineColorAndroid='#00b894' 
                                onChangeText={(name)=> this.setState({name})}
                             ></TextInput>
-                            <Text style={styles.text}>Alamat Kost  *</Text>
+                            <Text style={styles.text}>Nama provinsi  </Text>
+
+                            {/* <Picker
+                                selectedValue={this.state.prov}
+                                style={{ flex: 1 }}
+                                onValueChange={(itemValue, itemIndex) =>
+                                this.setState({ prov: itemValue })
+                                } styles={{ fontSize: 18 }}>
+                               {this.state.prov.map( (item,index) => {
+                                   return (
+                                    <Picker.Item key={item.id} label={item.nama} value={item.id} />
+                                   )
+                                })}
+                            </Picker> */}
+
                             <TextInput placeholder='Masukan Nama Provinsi' underlineColorAndroid='#00b894'
                                  onChangeText={(province)=> this.setState({province})}
                             >
                             </TextInput>
 
-                            <Text style={styles.text}>Harga perbulan  *</Text>
-                            <TextInput placeholder='Masukan Nama kota' underlineColorAndroid='#00b894'
-                                 onChangeText={(price)=> this.setState({price})}
-                            >
-                            </TextInput>
-
-                            <Text style={styles.text}>Nama Kota  *</Text>
+                            <Text style={styles.text}>Nama Kota  </Text>
                             <TextInput placeholder='Masukan Nama kota' underlineColorAndroid='#00b894'
                                  onChangeText={(city)=> this.setState({city})}
                             >
                             </TextInput>
 
-                            <Text style={styles.text}>Search Alamat *</Text>
+                            <Text style={styles.text}>Nama Jalan  </Text>
+                            <TextInput placeholder='Masukan Nama Jalan' underlineColorAndroid='#00b894'
+                                 onChangeText={(region)=> this.setState({region})}
+                            >
+                            </TextInput>
+
+                            <Text style={styles.text}>Harga perbulan  </Text>
+                            <TextInput placeholder='Masukan Harga perbulan' underlineColorAndroid='#00b894'
+                                 onChangeText={(price)=> this.setState({price})}
+                            >
+                            </TextInput>
+
+                            <Text style={styles.text}>Jumlah kamar </Text>
+                            <TextInput placeholder='Masukan Jumlah Kamar' underlineColorAndroid='#00b894'
+                                 onChangeText={(room)=> this.setState({room})}
+                            >
+                            </TextInput>
+
+                            <View style={{ marginBottom: 5 }}>
+                            <View style={{
+                                flexDirection: 'row',
+                                paddingLeft: 5
+                            }}>
+                                <Text style={{
+                                fontSize: 18,
+                                fontWeight: 'bold',
+                                color: '#000'
+                                }}>Jenis Kosan </Text>
+                            </View>
+                            <Picker
+                                selectedValue={this.state.type}
+                                style={{ flex: 1 }}
+                                onValueChange={(itemValue, itemIndex) =>
+                                this.setState({ type: itemValue })
+                                } styles={{ fontSize: 18 }}>
+                                <Picker.Item label="Putra" value="Putra" />
+                                <Picker.Item label="Putri" value="Putri" />
+                            </Picker>
+                            </View>
+
+                           
+
+                            <Text style={styles.text}>Search Alamat </Text>
                             <SearchBar
                                 lightTheme={true}
                                 containerStyle={styles.searchBar}
@@ -155,8 +209,7 @@ export default class FormAds extends Component {
                                 placeholder="Type Here..."
                                 onChangeText={this.handleSearch}
                                 value={this.state.search}
-                            />  
-                            
+                            />                              
 
                             <View style={{
                             height: 250
@@ -165,10 +218,10 @@ export default class FormAds extends Component {
                                 width: '100%',
                                 height: '100%'
                             }}
-                                initialRegion={this.state.region}
+                                initialRegion={this.state.regions}
                                 onRegionChangeComplete={this.onRegionChange}>
                                 <Marker
-                                coordinate={this.state.region}
+                                coordinate={this.state.regions}
                                 title={"Kosan"}
                                 description={" - Marker kost - "}
                                 />
@@ -179,17 +232,17 @@ export default class FormAds extends Component {
                             <TextInput style={{flex:1}}
                              editable={false}
                             selectTextOnFocus={false}
-                            value={this.state.region.latitude.toString()}
+                            value={this.state.regions.latitude.toString()}
                             placeholder='Latitude' underlineColorAndroid='#00b894'
-                            onChangeText={(lat)=> this.setState({latitude})}
+                           
                               >
                              </TextInput>
                             <TextInput style={{flex:1}} 
                             editable={false}
                             selectTextOnFocus={false}
-                            value={this.state.region.longitude.toString()}
+                            value={this.state.regions.longitude.toString()}
                             placeholder='longtitude' underlineColorAndroid='#00b894' 
-                            onChangeText={(long)=> this.setState({longitude})}
+                           
                             ></TextInput>
                             </View>
                             <Text style={styles.text}>Foto Iklan *</Text>
@@ -205,33 +258,35 @@ export default class FormAds extends Component {
                                                                                             height: 20,
                                                                                             borderRadius: 20,
                                                                                             borderWidth: 0,
-                                                                                            alignItems: 'center'}}>
+                                                                                            alignItems: 'center',marginBottom:30}}>
                                     <Text style={{color: 'white'}}>Upload Photo</Text>
                                 </TouchableOpacity>
                             </View>
 
-                            <Text style={styles.text}>Pemilik Kost *</Text>
-                            <TextInput placeholder='Masukkan nama pemilik kost' underlineColorAndroid='#00b894' 
-                            onChangeText={(name)=> this.setState({name})}
-                            ></TextInput>
-                            <Text style={styles.text}>Nomor telepon Pemilik Kost *</Text>
-                            <TextInput placeholder='Masukkan nomor telepon pemilik kost' underlineColorAndroid='#00b894'
-                            onChangeText={(nohp)=> this.setState({nohp})}
-                             ></TextInput>
-                            <Text style={styles.text}>Pengelola Kost</Text>
-                            <TextInput placeholder='Masukkan nama pengelola kost' underlineColorAndroid='#00b894' 
-                            onChangeText={(name)=> this.setState({name})}
-                            ></TextInput>
-                            <Text style={styles.text}>No. Telepon Pengelola Kost</Text>
-                            <TextInput placeholder='Masukkan nomor telepon pengelola kost' underlineColorAndroid='#00b894' 
-                            onChangeText={(name)=> this.setState({name})}
-                            ></TextInput>
+                            <Text style={styles.text}>Luas Kamar</Text>
+                            <TextInput placeholder='Masukan Luas Kamar, contoh 3 X 5' underlineColorAndroid='#00b894'
+                                 onChangeText={(area)=> this.setState({area})}
+                            >
+                            </TextInput>
+
+                            <Text style={styles.text}>Fasilitas</Text>
+                            <TextInput placeholder='Contoh Wifi,Toilet,Kunci,Parkir' underlineColorAndroid='#00b894'
+                                 onChangeText={(facility)=> this.setState({facility})}
+                            >
+                            </TextInput>
+                           
 
                         </View>
 
                     </View>
-                        <Button onPress={this._aksiTambah}
-                        title="Submit" style={{height:50,backgroundColor:'green'}}/>
+                    <TouchableOpacity  onPress={this._aksiTambah}>
+                    <View style={{padding:10,height:50,flex:1}}>
+                        <View style={{backgroundColor:'green',flex:1,justifyContent:'center',alignSelf:'center',width:300,borderRadius:20,alignItems:'center'}}r>
+                            <Text style ={{color:'white'}}>Submit</Text>
+                        </View>
+                    </View>
+                    </TouchableOpacity>
+                        
                 </ScrollView>
                
             </View>
@@ -261,8 +316,11 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     text: {
-        paddingLeft: 8,
-        color: 'black'
+        paddingLeft: 4,
+        color: 'black',
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#000'
     },
     field: {
         marginLeft: 8,

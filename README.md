@@ -66,4 +66,4 @@ Under maintenance
 
 WTFPL-LICENSE
 
-See [LICENSE](http://www.wtfpl.net/)
+See [LICENSE](http://www.wtfpl.net/txt/copying/)

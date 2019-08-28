@@ -35,6 +35,7 @@ export default class FormAds extends Component {
                 longitudeDelta: 0.025,
             },
             prov : [],
+            provPil: '',
             search: '',
             photo: null,
             type: "Putri",
@@ -87,7 +88,7 @@ export default class FormAds extends Component {
             city: this.state.city,
             village: "test",
             region: this.state.region,
-            province: this.state.province,
+            province: this.state.provPil,
             name: this.state.name,
             cost: parseInt(this.state.price),
             room: parseInt(this.state.room),
@@ -97,7 +98,7 @@ export default class FormAds extends Component {
             area: this.state.area,
             facility:this.state.facility
           }
-        //   console.log(dataUser)
+          console.log(dataUser)
 
           const configBarier = {
             headers: { Authorization: "bearer " + userTokenTemp }
@@ -132,25 +133,25 @@ export default class FormAds extends Component {
                             <TextInput placeholder='Masukan nama kost' underlineColorAndroid='#00b894' 
                                onChangeText={(name)=> this.setState({name})}
                             ></TextInput>
-                            <Text style={styles.text}>Nama provinsi  </Text>
+                            <Text style={styles.text}>Nama Provinsi  </Text>
 
-                            {/* <Picker
-                                selectedValue={this.state.prov}
+                            <Picker
+                                selectedValue={this.state.provPil}
                                 style={{ flex: 1 }}
-                                onValueChange={(itemValue, itemIndex) =>
-                                this.setState({ prov: itemValue })
+                                onValueChange={async (itemValue, itemIndex) =>
+                                await this.setState({ provPil: itemValue })
                                 } styles={{ fontSize: 18 }}>
                                {this.state.prov.map( (item,index) => {
                                    return (
-                                    <Picker.Item key={item.id} label={item.nama} value={item.id} />
+                                    <Picker.Item key={item.id} label={item.nama} value={item.nama} />
                                    )
                                 })}
-                            </Picker> */}
+                            </Picker>
 
-                            <TextInput placeholder='Masukan Nama Provinsi' underlineColorAndroid='#00b894'
+                            {/* <TextInput placeholder='Masukan Nama Provinsi' underlineColorAndroid='#00b894'
                                  onChangeText={(province)=> this.setState({province})}
                             >
-                            </TextInput>
+                            </TextInput> */}
 
                             <Text style={styles.text}>Nama Kota  </Text>
                             <TextInput placeholder='Masukan Nama kota' underlineColorAndroid='#00b894'
@@ -164,13 +165,13 @@ export default class FormAds extends Component {
                             >
                             </TextInput>
 
-                            <Text style={styles.text}>Harga perbulan  </Text>
+                            <Text style={styles.text}>Harga Perbulan  </Text>
                             <TextInput placeholder='Masukan Harga perbulan' underlineColorAndroid='#00b894'
                                  onChangeText={(price)=> this.setState({price})}
                             >
                             </TextInput>
 
-                            <Text style={styles.text}>Jumlah kamar </Text>
+                            <Text style={styles.text}>Jumlah Kamar </Text>
                             <TextInput placeholder='Masukan Jumlah Kamar' underlineColorAndroid='#00b894'
                                  onChangeText={(room)=> this.setState({room})}
                             >

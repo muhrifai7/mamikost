@@ -36,6 +36,9 @@ export default class FormAds extends Component {
             },
             prov : [],
             provPil: '',
+            provPilId: [],
+            kab : [],
+            kabPil: '',
             search: '',
             photo: null,
             type: "Putri",
@@ -52,7 +55,8 @@ export default class FormAds extends Component {
             area: "",
             facility: "",
         },
-        this._getProvince()
+        this. _getProvince()
+        // this._getKabupaten()
     }
 
     handleChoosePhoto = () => {
@@ -116,10 +120,19 @@ export default class FormAds extends Component {
       _getProvince = async () => {
         const responseData = await axios.get("http://dev.farizdotid.com/api/daerahindonesia/provinsi");
         await this.setState({
-          prov: responseData.data.semuaprovinsi
+          prov: responseData.data.semuaprovinsi,
+          provPilId : responseData.data.semuaprovinsi[0].id
         })
-        console.log(this.state.prov);
+        console.log(this.state.provPilId);
       }
+
+    //   _getKabupaten = async () => {
+    //     const responseData = await axios.get(`http://dev.farizdotid.com/api/daerahindonesia/provinsi/${'this.state.provPilId'}/kabupaten`);
+    //     await this.setState({
+    //       kab: responseData.data
+    //     })
+    //     console.log(this.state.kab);
+    //   }
 
     render() { 
         const { photo } = this.state
@@ -143,15 +156,28 @@ export default class FormAds extends Component {
                                 } styles={{ fontSize: 18 }}>
                                {this.state.prov.map( (item,index) => {
                                    return (
-                                    <Picker.Item key={item.id} label={item.nama} value={item.nama} />
+                                    <Picker.Item key={item.id} label={item.nama} value={item.nama} 
+                                        
+                                    />
                                    )
                                 })}
                             </Picker>
 
-                            {/* <TextInput placeholder='Masukan Nama Provinsi' underlineColorAndroid='#00b894'
-                                 onChangeText={(province)=> this.setState({province})}
-                            >
-                            </TextInput> */}
+                            {/* <Picker
+                                selectedValue={this.state.kabPil}
+                                style={{ flex: 1 }}
+                                onValueChange={async (itemValue, itemIndex) =>
+                                await this.setState({ kabPil: itemValue })
+                                } styles={{ fontSize: 18 }}>
+                               {this.state.kab.map( (item,index) => {
+                                   return (
+                                    <Picker.Item key={item.id} label={item.nama} value={item.nama} 
+                                        
+                                    />
+                                   )
+                                })}
+                            </Picker> */}
+
 
                             <Text style={styles.text}>Nama Kota  </Text>
                             <TextInput placeholder='Masukan Nama kota' underlineColorAndroid='#00b894'

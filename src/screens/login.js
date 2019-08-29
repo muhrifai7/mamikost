@@ -24,7 +24,6 @@ class Login extends Component {
 
         }
        this._cekLogin();
-      
 
     }
     static navigationOptions = ({ navigation }) => (
@@ -38,8 +37,6 @@ class Login extends Component {
             }
         }
     )
-
-// <<<<<<< HEAD
     _cekLogin = async () => {
         
           const value = await AsyncStorage.getItem('userToken');
@@ -97,11 +94,11 @@ class Login extends Component {
                 </View>
                 <View style={{ justifyContent: 'center'}}>
                 <TouchableOpacity style={styles.button} onPress={() => this._Login()}>
-                        <Text style={styles.text}>Login</Text>
+                        <Text style={styles.text}>Masuk</Text>
                     </TouchableOpacity>
                 {/* action={()=> this.props.navigation.navigate('Profile')} */}
                     <TouchableOpacity style={styles.buttonRegister} onPress={() => this.props.navigation.navigate('Signup')}>
-                        <Text style={styles.text}>Sign Up</Text>
+                        <Text style={styles.text}>Daftar</Text>
                     </TouchableOpacity>
 
                 

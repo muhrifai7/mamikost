@@ -52,7 +52,7 @@ class ListDorm extends Component {
                                     <Text> {item.city}</Text>
                                 </Text>
                                 <Text style={{ fontWeight: 'bold'}}>
-                                    Rp {item.cost}/bln
+                                    Rp {item.cost} /bln
                                 </Text>
                                 <Text>
                                     {item.name}

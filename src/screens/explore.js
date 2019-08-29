@@ -70,13 +70,31 @@ class Explore extends Component {
 
 const ExploreNavigator = createStackNavigator(
         {
-            Explore: Explore,
-            ListView: ListViewNav,
+            Explore: {
+                screen : Explore
+            },
+            ListView: {screen : ListViewNav,
+                navigationOptions: { headerTitle: 'Cari Alamat Kost', headerTitleStyle: {
+                    color: 'green',
+                } },
+               
+            },
             ListDorm:ListDorm,
-            DetailView: DetailView,
+            DetailView: {screen : DetailView,
+                navigationOptions: { headerTitle: 'Detail Kost', headerTitleStyle: {
+                    color: 'green'
+                } },
+               
+            },
             CityDetail: CityDetail,
             FilterPage: FilterPage,
-            Booking: Booking,
+            Booking: {screen : Booking,
+                navigationOptions: { headerTitle: 'Pesan sekarang', headerTitleStyle: {
+                    color: 'green'
+                } },
+               
+            },
+            // Booking: Booking,
             Booklist:Booklist,
             ListAd : ListAd,
             FormAd : FormAd

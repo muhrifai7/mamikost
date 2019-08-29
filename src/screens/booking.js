@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, View, ScrollView, TouchableHighlight, TouchableOpacity,StyleSheet,FlatList,Text
+import { Image, View, ScrollView, TouchableHighlight, TouchableOpacity,StyleSheet,FlatList,Text,CheckBox 
 } from 'react-native';
 import DatePicker from 'react-native-datepicker'
 
@@ -28,9 +28,18 @@ class Booking extends Component {
                     <ScrollView>
                     
                         <View style={{justifyContent:'center'}}>
-                        <View style={{flexDirection:'row', justifyContent:'center',alignContent:'center',height:50, marginBottom: 20}}>
+                        <View style={{alignContent:'center',marginBottom: 20}}>
                             <View style={styles.navbar}>
-                                <Text style={{paddingLeft: 14, fontWeight: 'bold' }}>Tanggal Masuk</Text>
+                                <View style={{flex:1}}>
+                                    <Text style={{paddingLeft: 50, fontWeight: 'bold' }}>Tanggal Masuk</Text>
+                                </View>
+                                <View style={{flex:1}}>
+                                    <Text style={{paddingLeft: 40, fontWeight: 'bold' }}>Tanggal Keluar</Text>
+                                </View>
+                            </View>
+                            
+                            <View style={{flexDirection:'row'}}>
+                            <View style={{flex:1,paddingLeft:40}}>
                                 <DatePicker
                                     style={{width: 97}}
                                     date={this.state.date}
@@ -54,9 +63,9 @@ class Booking extends Component {
                                     onDateChange={(date) => {this.setState({date: date})}}
                                 />
                             </View>
-                            <View  style={styles.navbar}><Text></Text></View>
-                            <View  style={styles.navbar}>
-                                <Text style={{paddingLeft: 14, fontWeight: 'bold' }}>Tanggal Keluar</Text>
+                           
+                           
+                            <View style={{flex:1,paddingLeft:20}}>
                                 <DatePicker
                                     style={{width: 120}}
                                     date={this.state.date}
@@ -79,6 +88,7 @@ class Booking extends Component {
                                     }}
                                     onDateChange={(date) => {this.setState({date: date})}}
                                 />
+                                </View>
                             </View>
                         </View>
             
@@ -90,11 +100,11 @@ class Booking extends Component {
 
                     <View style={{flexDirection:'row',padding:15}}>
                         <View style={{flex:1,padding:10}}>
-                        <Image source={{uri: 'https://www.sewakost.com/files/10-2016/ad12720/14764522301017899518_large.JPG'}} style={{width: 100, height: 110}}/>
+                        <Image source={{uri: 'https://www.sewakost.com/files/10-2016/ad12720/14764522301017899518_large.JPG'}} style={{width: 120, height: 110,borderColor:'gray',borderWidth:0.7}}/>
                         </View>
-                        <View style={{flex:2,backgroundColor:'white',paddingTop:10}}>
-                            <Text>Kost mamiroms malira tipe A</Text>
-                            <View style={{paddingTop:40}}><Text style={{fontWeight:'bold'}}>Rp.100.101/bulan</Text></View>
+                        <View style={{flex:2,backgroundColor:'white',padding:20}}>
+                            <Text style={styles.text}>Kost mamiroms malira tipe A</Text>
+                            <View style={{paddingTop:40}}><Text style={{fontWeight:'bold'}}>Rp 500.000 /bulan</Text></View>
                             
                         </View>
                     </View>
@@ -105,8 +115,8 @@ class Booking extends Component {
 
                     <View style={{padding:20}}>
                             <View style={{justifyContent:'space-between',flexDirection:'row',padding:10}}>
-                            <View style={{flex:1}}><Text style={{fontSize:15}}>Data Penghuni</Text></View>
-                            <View style={{flex:1}}><Text style={{color:'red'}}>Ubah</Text></View>
+                            <View style={{flex:1}}><Text style={{fontSize:18}}>Data Penghuni</Text></View>
+                            <View style={{flex:1}}><Text style={{color:'red',fontSize:18}}>Ubah</Text></View>
                             </View>
                             <View style={{justifyContent:'space-between',flexDirection:'row',padding:10}}>
                             <View style={{flex:1}}><Text style={{color:'gray'}}>Nama Lengkap</Text></View>
@@ -128,26 +138,32 @@ class Booking extends Component {
 
                     </View>
 
-                    <View style={{backgroundColor:'white',borderBottomColor:'gray',borderWidth:0.4,marginHorizontal:20, marginRi: 20}}>
+                    <View style={{backgroundColor:'white',borderBottomColor:'gray',borderWidth:0.4,marginHorizontal:20}}>
 
                     </View>
 
                     <View style={{height:60,padding:20}}>
-                        <Text tyle={{fontSize:20}}>Keterangan Biaya lain</Text>
-                    </View>
-                    <View style={{flexDirection:'row',padding:20}}>
-                            <TouchableOpacity onPress={()=> this.setState({
-                                is_done: !this.state.is_done
-                            })}>
-                                <View 
-                                style={{width:30,height:30,borderWidth:3,borderColor:'gray',borderRadius:45,paddingLeft:20,marginRight:20}}></View></TouchableOpacity>
-                            <Text>Saya Menyetujui syarat dan ketentuan yang berlaku</Text>
+                        <Text tyle={{fontSize:20,fontWeight:'bold'}}>Keterangan Biaya lain</Text>
                     </View>
 
+                    <View style={{ flexDirection: 'column',marginLeft:20}}>
+                         
+                        <View style={{ flexDirection: 'row' }}>
+                            <CheckBox
+                            value={this.state.is_done}
+
+                            onValueChange={() => this.setState({ is_done: !this.state.is_done })}
+                            />
+                            <Text style={{marginTop: 5}}>Saya Menyetujui syarat dan ketentuan yang berlaku</Text>
+                        </View>
+                    </View>
+
+
                     <View style={{padding:20,backgroundColor:'white',justifyContent:'center'}}>
-                        <TouchableOpacity onPress={()  => this.props.navigation.navigate('Booklist')}>
+                        <TouchableOpacity disabled={!this.state.is_done}
+                        onPress={()  => this.props.navigation.navigate('Booklist')}>
                             <View  style={{backgroundColor:'green',justifyContent:'center',height:40,alignItems:'center',borderRadius:8}}>
-                            <Text style={{color:'white'}} >Book</Text>
+                            <Text style={{color:'white'}} >Pesan</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -162,8 +178,12 @@ const styles = StyleSheet.create({
     navbar : {
         justifyContent:'center',
         flex:1,
-        marginTop: 20,
-        paddingLeft:20,
-        marginRight: 50
+        marginBottom: 20,
+        alignContent:'center',
+       
+        flexDirection:'row'
+    },
+    text : {
+        fontSize:16,
     }
 })

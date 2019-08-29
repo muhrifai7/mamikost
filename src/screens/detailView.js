@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Rating, AirbnbRating } from 'react-native-elements'
-import { View, Image, ScrollView, TouchableHighlight, TouchableOpacity } from 'react-native'
+import { View, Image, ScrollView, TouchableHighlight, TouchableOpacity, Share } from 'react-native'
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right, Item } from 'native-base'
 
 
@@ -56,26 +56,6 @@ export default class DetailView extends Component {
             }
         };
 
-    static navigationOptions = ({ navigation }) => (
-        {
-            headerRight: (
-                <View style={{ flexDirection: 'row'}}>
-                    <TouchableOpacity>
-                        <Icon style={{ color: 'red' , marginRight: 20}} name='ios-heart-empty' size={28} />
-                    </TouchableOpacity>
-                    <TouchableOpacity onpress={this.share}>
-                        <Icon style={{ color: 'gray', marginRight: 20}} name='share' size={28} />
-                    </TouchableOpacity>
-                </View>
-            ),
-            title: 'Detail Kost',
-            headerTitleStyle: {
-                color: 'green'
-            },
-        }
-    )
-
-    
 
 
     _isViewRendered(isPhoto, item){
@@ -120,14 +100,14 @@ export default class DetailView extends Component {
                         <Icon name='images' size={28} style={{ color: 'white'}} />
                         <Text style={{ color: 'white'}}>Foto</Text>
                     </TouchableOpacity>
+                    
                     <TouchableOpacity style={{flex:1, alignSelf: 'center', marginHorizontal: 50, marginRight: 80}}
-                    onPress={() => this.setState({
-                        isPhoto:false
-                    })}
+                    onPress={() => this.props.navigation.navigate("Maps")}
                     >
                         <Icon name='map' size={28} style={{ color: 'white'}}/>
                         <Text style={{ color: 'white'}}>Peta</Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity style={{flex:1, alignSelf: 'center'}}>
                         <Icon name='compass' size={28} style={{ color: 'white'}}/>
                         <Text style={{ color: 'white'}}>360</Text>
@@ -149,8 +129,16 @@ export default class DetailView extends Component {
                             </View>
                         </View>
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                            <Icon name='medal' size={40} style={{ marginLeft: 5, color: 'gold', alignSelf: 'center'}}/>
-                            <Text style={{ color: 'gold'}}>PREMIUM</Text>
+                        <View style={{ flexDirection: 'row'}}>
+
+                        <TouchableOpacity>
+                        <Icon style={{ color: 'red' , marginRight: 20}} name='ios-heart-empty' size={28} />
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={this.share}>
+                                <Icon style={{ color: 'gray', marginRight: 20}} name='share' size={28} />
+                            </TouchableOpacity>
+                         </View>
+
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', padding: 15, justifyContent: 'space-between', borderBottomWidth: 1, borderBottomColor: '#d5ded7'}}>
@@ -260,7 +248,7 @@ export default class DetailView extends Component {
                     </View>
                     <View style={{ marginBottom: 300, padding: 25, borderWidth: 1, flexDirection: 'row', width: 380, padding: 20, marginHorizontal: 15, borderRadius: 10, borderColor: 'gray'}}>
                         <View style={{flex:2, marginTop: 10}}>
-                            <Text style={{fontWeight: 'bold',  color:'gray'}}>Rp {item.cost}/bulan </Text>
+                            <Text style={{fontWeight: 'bold',  color:'gray'}}>Rp {item.cost} /bulan </Text>
                         </View>
                         <TouchableOpacity style={{flex:1, justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderRadius: 5, borderColor: 'red', marginRight: 5, paddingLeft: 20}}>
                             <Text style={{flex:1, alignSelf: 'center', color: 'red', fontWeight: 'bold'}}>Hubungi kost</Text>

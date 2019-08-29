@@ -9,7 +9,7 @@ Mamiclone is a genetically imperfect cloning of Mamikos Mobile Apps. Biotechist 
 
 ## Preview
 
-![Mamiclone Demo](https://content.screencast.com/users/RizqullahT/folders/Default/media/319dc788-aad1-41a7-8dfd-1123ec9188ec/mamiclone-demo.gif)
+![](https://content.screencast.com/users/RizqullahT/folders/Default/media/319dc788-aad1-41a7-8dfd-1123ec9188ec/mamiclone-demo.gif)
 
 
 ## Features

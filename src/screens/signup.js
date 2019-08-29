@@ -71,15 +71,15 @@ export default class Signup extends Component {
                     <Image style={styles.imgResize} source={require('../assets/img/undraw_Hello_qnas.png')}/>
                 </View>
                 <View style={{ justifyContent: 'center'}}>
-                    <TextInput style={styles.textInput} placeholder='Nama'
+                    <TextInput style={styles.textInput} placeholder='Nama minimal 3 huruf'
                         onChangeText={(username)=> this.setState({username})}
                     />
                     <TextInput
-                    style={styles.textInput} placeholder='email harus ada titik dan @ minimal 8 char' 
+                    style={styles.textInput} placeholder='Email harus valid' 
                     onChangeText={(email)=> this.setState({email})}
                     />
 
-                    <TextInput style={styles.textInput} placeholder='password harus terdiri dari angka dan huruf minimal 8 char' 
+                    <TextInput style={styles.textInput} placeholder='Password terdiri dari angka dan huruf minimal 8 char' 
                         onChangeText={(password)=> this.setState({password})}
                     />
                     <TextInput

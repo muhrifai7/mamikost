@@ -83,7 +83,7 @@ export default class Signup extends Component {
                         onChangeText={(password)=> this.setState({password})}
                     />
                     <TextInput
-                    style={styles.textInput} placeholder='Telphon' 
+                    style={styles.textInput} placeholder='Telepon' keyboardType={'numeric'}
                     onChangeText={(telp)=> this.setState({telp})}
                     />
                 </View>

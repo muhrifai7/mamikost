@@ -193,12 +193,14 @@ export default class FormAds extends Component {
 
                             <Text style={styles.text}>Harga Perbulan  </Text>
                             <TextInput placeholder='Masukan Harga perbulan' underlineColorAndroid='#00b894'
+                                 keyboardType={'numeric'}
                                  onChangeText={(price)=> this.setState({price})}
                             >
                             </TextInput>
 
                             <Text style={styles.text}>Jumlah Kamar </Text>
                             <TextInput placeholder='Masukan Jumlah Kamar' underlineColorAndroid='#00b894'
+                                 keyboardType={'numeric'}
                                  onChangeText={(room)=> this.setState({room})}
                             >
                             </TextInput>

@@ -58,9 +58,9 @@ $ npm install
 ## Download App (Demo usage only)
 
 Under maintenance
-
+<p>
 <img align="left" src="https://camo.githubusercontent.com/c65650171c5adbc2def5643be3bc21485f049e08/687474703a2f2f7777772e696e7374616c6c6164732e6e65742f6275746f6e2f646f776e6c6f61642d61706b2e706e67" width="200" height="200"  />
-
+</P>
 
 ## License
 

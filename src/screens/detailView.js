@@ -86,7 +86,7 @@ export default class DetailView extends Component {
     }
 
     render() {
-        const item = this.props.navigation.getParam('item', '')
+        const item = this.props.navigation.getParam('item')
         return (
             <View>
                 {this._isViewRendered(this.state.isPhoto, item)}
@@ -253,7 +253,7 @@ export default class DetailView extends Component {
                         <TouchableOpacity style={{flex:1, justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderRadius: 5, borderColor: 'red', marginRight: 5, paddingLeft: 20}}>
                             <Text style={{flex:1, alignSelf: 'center', color: 'red', fontWeight: 'bold'}}>Hubungi kost</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Booking')}  style={{flex:1, justifyContent: 'center', borderRadius: 5, backgroundColor: 'red', paddingLeft: 25}}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Booking', {item})}  style={{flex:1, justifyContent: 'center', borderRadius: 5, backgroundColor: 'red', paddingLeft: 25}}>
                             <Text style={{color: 'white'}}>Pesan</Text>
                         </TouchableOpacity>
                     </View>

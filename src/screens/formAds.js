@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, StyleSheet, TouchableOpacity, Text, TextInput, Button,Picker } from 'react-native';
+import { View, ScrollView, StyleSheet, TouchableOpacity, Text, TextInput, Image,Picker } from 'react-native';
 import ImagePicker from 'react-native-image-picker'
 import { SearchBar } from 'react-native-elements'
 import { RadioButton } from 'react-native-paper';
@@ -110,7 +110,7 @@ export default class FormAds extends Component {
             room: parseInt(this.state.room),
             latitude:this.state.regions.latitude.toString(),
             longitude: this.state.regions.longitude.toString(),
-            photoURL: "https://static.mamikos.com/uploads/cache/data/style/2019-07-03/17SrQbtt-540x720.jpg",
+            photoURL: this.state.avatarSource.uri,
             area: this.state.area,
             facility:this.state.facility
           }
@@ -288,12 +288,11 @@ export default class FormAds extends Component {
                             </View>
                             <Text style={styles.text}>Foto Iklan *</Text>
                             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                                {photo && (
-                                    <Image
-                                        source={{ uri: photo.uri }}
-                                        style={{ width: 300, height: 300 }}
-                                    />
-                                )}
+                                {this.state.avatarSource ? <Image 
+                                    style={{width:100,height:100}}
+                                    source={this.state.avatarSource}
+                                />: null}
+                                
                                 <TouchableOpacity onPress={this.handleChoosePhoto} style={{backgroundColor:'green',
                                                                                             width: 100,
                                                                                             height: 20,

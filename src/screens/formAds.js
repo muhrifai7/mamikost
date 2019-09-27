@@ -28,6 +28,7 @@ export default class FormAds extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            avatarSource : null,
             regions: {
                 latitude: -6.059989,
                 longitude: 106.7063,
@@ -51,7 +52,7 @@ export default class FormAds extends Component {
             room: "",
             latitude: "",
             longitude: "",
-            photoURL: "",
+            photoURL: null,
             area: "",
             facility: "",
         },
@@ -60,20 +61,31 @@ export default class FormAds extends Component {
     }
 
     handleChoosePhoto = () => {
-        const options = {
-            noData: true
-        }
-
-    ImagePicker.launchImageLibrary(options, response => {
-        if (response.uri) {
-            this.setState(
-                {
-                    photo: response
-                }
-            )
-        }
-    })
-}
+        const options = {}
+        ImagePicker.showImagePicker(options, (response) => {
+            console.log('Response = ', response);
+           
+            if (response.didCancel) {
+              console.log('User cancelled image picker');
+            }
+            else if (response.error) {
+              console.log('ImagePicker Error: ', response.error);
+            }
+            else if (response.customButton) {
+              console.log('User tapped custom button: ', response.customButton);
+            }
+            else {
+              let source = { uri: response.uri };
+           
+              // You can also display the image using data:
+            //   let source = { uri: 'data:image/jpeg;base64,' + response.data };
+              this.setState({
+                avatarSource: source
+              });
+            }
+          });
+          
+    }
 
     handleSearch = (search) => {
         this.setState({search})
